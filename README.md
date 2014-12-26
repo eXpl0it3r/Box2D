@@ -1,19 +1,42 @@
-##About
-Box2D is a 2D physics engine for games.
+Box2D for C++
+=============
 
-For help with Box2D, please visit http://www.box2d.org. There is a forum there where you may post your questions.
+Box2D is a 2D physics engine mostly targeted towards games.
 
-Please see Building.txt to learn how to build Box2D and run the testbed.
+For help regarding Box2D's features, please visit the [official website](http://www.box2d.org/), where you can also find the [official forum](http://box2d.org/forum/). For problems related to this port, you may contact me at eXpl0it3r@sfml-dev.org or create an issue on the [tracker](https://github.com/eXpl0it3r/Box2D/issues).
 
-To run the demos, set "Testbed" as your startup project and press F5. Some test bed commands are:
-- 'r' to reset the current test
-- SPACE to launch a bomb
-- arrow keys to pan
-- 'x' and 'z' to zoom in/out
-- use the mouse to click and drag objects
+About this Port
+---------------
 
-The main Box2D library is open source, but not open contribution. Please do not submit pull requests. Exceptions may be considered for build files and other items that are not part of the main library source. Thank you for your understanding.
+The main motivation behind this port is to provide a true C++ version of Box2D as opposed to the current C-like Box2D and make the CMake build system more flexible.
+
+Here, I'll list the main changes and progress:
+
+* [X] Restructure the directory layout
+* [ ] Update the CMake build system
+* [ ] Add a true namespace and remove the `b2` prefixes
+* [ ] Use C++ headers instead of C headers
+* [ ] Replace preprocessor constants with C++ constants
+* [ ] Update the "Hello World" example
+* [ ] Update the "Testbed" example
+
+Hints for the Testbed
+---------------------
+
+Some test bed commands are:	
+* 'r' to reset the current test
+* SPACE to launch a bomb
+* arrow keys to pan
+* 'x' and 'z' to zoom in/out
+* use the mouse to click and drag objects
+
+License
+-------
+
+As the original Box2D this port is released under the zlib/libpng license, see the [LICENSE](LICENSE) file.
+
+Credits
+-------
 
 Erin Catto
 http://www.box2d.org
-
