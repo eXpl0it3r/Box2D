@@ -16,11 +16,11 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_BODY_H
-#define B2_BODY_H
+#ifndef B2_BODY_HPP
+#define B2_BODY_HPP
 
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Collision/Shapes/b2Shape.h>
+#include <Box2D/Common/b2Math.hpp>
+#include <Box2D/Collision/Shapes/b2Shape.hpp>
 #include <memory>
 
 class b2Fixture;
@@ -857,4 +857,4 @@ inline const b2World* b2Body::GetWorld() const
 	return m_world;
 }
 
-#endif
+#endif // B2_BODY_HPP

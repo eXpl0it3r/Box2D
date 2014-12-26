@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_EDGE_SHAPE_H
-#define B2_EDGE_SHAPE_H
+#ifndef B2_EDGE_SHAPE_HPP
+#define B2_EDGE_SHAPE_HPP
 
-#include <Box2D/Collision/Shapes/b2Shape.h>
+#include <Box2D/Collision/Shapes/b2Shape.hpp>
 
 /// A line segment (edge) shape. These can be connected in chains or loops
 /// to other edge shapes. The connectivity information is used to ensure
@@ -71,4 +71,4 @@ inline b2EdgeShape::b2EdgeShape()
 	m_hasVertex3 = false;
 }
 
-#endif
+#endif // B2_EDGE_SHAPE_HPP

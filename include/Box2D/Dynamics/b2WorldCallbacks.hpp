@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_WORLD_CALLBACKS_H
-#define B2_WORLD_CALLBACKS_H
+#ifndef B2_WORLD_CALLBACKS_HPP
+#define B2_WORLD_CALLBACKS_HPP
 
-#include <Box2D/Common/b2Settings.h>
+#include <Box2D/Common/b2Settings.hpp>
 
 struct b2Vec2;
 struct b2Transform;
@@ -152,4 +152,4 @@ public:
 									const b2Vec2& normal, float32 fraction) = 0;
 };
 
-#endif
+#endif // B2_WORLD_CALLBACKS_HPP

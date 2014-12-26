@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_DRAW_H
-#define B2_DRAW_H
+#ifndef B2_DRAW_HPP
+#define B2_DRAW_HPP
 
-#include <Box2D/Common/b2Math.h>
+#include <Box2D/Common/b2Math.hpp>
 
 /// Color for debug drawing. Each value has the range [0,1].
 struct b2Color
@@ -83,4 +83,4 @@ protected:
 	uint32 m_drawFlags;
 };
 
-#endif
+#endif // B2_DRAW_HPP

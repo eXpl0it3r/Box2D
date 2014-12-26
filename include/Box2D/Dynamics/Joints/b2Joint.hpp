@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_JOINT_H
-#define B2_JOINT_H
+#ifndef B2_JOINT_HPP
+#define B2_JOINT_HPP
 
-#include <Box2D/Common/b2Math.h>
+#include <Box2D/Common/b2Math.hpp>
 
 class b2Body;
 class b2Joint;
@@ -223,4 +223,4 @@ inline bool b2Joint::GetCollideConnected() const
 	return m_collideConnected;
 }
 
-#endif
+#endif // B2_JOINT_HPP

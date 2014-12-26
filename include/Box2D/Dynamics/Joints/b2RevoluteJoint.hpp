@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_REVOLUTE_JOINT_H
-#define B2_REVOLUTE_JOINT_H
+#ifndef B2_REVOLUTE_JOINT_HPP
+#define B2_REVOLUTE_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 /// Revolute joint definition. This requires defining an
 /// anchor point where the bodies are joined. The definition
@@ -201,4 +201,4 @@ inline float32 b2RevoluteJoint::GetMotorSpeed() const
 	return m_motorSpeed;
 }
 
-#endif
+#endif // B2_REVOLUTE_JOINT_HPP

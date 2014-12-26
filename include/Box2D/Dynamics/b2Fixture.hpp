@@ -16,12 +16,12 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_FIXTURE_H
-#define B2_FIXTURE_H
+#ifndef B2_FIXTURE_HPP
+#define B2_FIXTURE_HPP
 
-#include <Box2D/Dynamics/b2Body.h>
-#include <Box2D/Collision/b2Collision.h>
-#include <Box2D/Collision/Shapes/b2Shape.h>
+#include <Box2D/Dynamics/b2Body.hpp>
+#include <Box2D/Collision/b2Collision.hpp>
+#include <Box2D/Collision/Shapes/b2Shape.hpp>
 
 class b2BlockAllocator;
 class b2Body;
@@ -342,4 +342,4 @@ inline const b2AABB& b2Fixture::GetAABB(int32 childIndex) const
 	return m_proxies[childIndex].aabb;
 }
 
-#endif
+#endif // B2_FIXTURE_HPP

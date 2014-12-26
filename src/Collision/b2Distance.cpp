@@ -16,11 +16,11 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <Box2D/Collision/b2Distance.h>
-#include <Box2D/Collision/Shapes/b2CircleShape.h>
-#include <Box2D/Collision/Shapes/b2EdgeShape.h>
-#include <Box2D/Collision/Shapes/b2ChainShape.h>
-#include <Box2D/Collision/Shapes/b2PolygonShape.h>
+#include <Box2D/Collision/b2Distance.hpp>
+#include <Box2D/Collision/Shapes/b2CircleShape.hpp>
+#include <Box2D/Collision/Shapes/b2EdgeShape.hpp>
+#include <Box2D/Collision/Shapes/b2ChainShape.hpp>
+#include <Box2D/Collision/Shapes/b2PolygonShape.hpp>
 
 // GJK using Voronoi regions (Christer Ericson) and Barycentric coordinates.
 int32 b2_gjkCalls, b2_gjkIters, b2_gjkMaxIters;

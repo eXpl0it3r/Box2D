@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_PULLEY_JOINT_H
-#define B2_PULLEY_JOINT_H
+#ifndef B2_PULLEY_JOINT_HPP
+#define B2_PULLEY_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 const float32 b2_minPulleyLength = 2.0f;
 
@@ -149,4 +149,4 @@ protected:
 	float32 m_mass;
 };
 
-#endif
+#endif // B2_PULLEY_JOINT_HPP

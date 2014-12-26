@@ -16,9 +16,9 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_GROWABLE_STACK_H
-#define B2_GROWABLE_STACK_H
-#include <Box2D/Common/b2Settings.h>
+#ifndef B2_GROWABLE_STACK_HPP
+#define B2_GROWABLE_STACK_HPP
+#include <Box2D/Common/b2Settings.hpp>
 #include <string.h>
 
 /// This is a growable LIFO stack with an initial capacity of N.
@@ -82,4 +82,4 @@ private:
 };
 
 
-#endif
+#endif // B2_GROWABLE_STACK_HPP

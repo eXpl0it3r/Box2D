@@ -16,9 +16,9 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <Box2D/Dynamics/Joints/b2FrictionJoint.h>
-#include <Box2D/Dynamics/b2Body.h>
-#include <Box2D/Dynamics/b2TimeStep.h>
+#include <Box2D/Dynamics/Joints/b2FrictionJoint.hpp>
+#include <Box2D/Dynamics/b2Body.hpp>
+#include <Box2D/Dynamics/b2TimeStep.hpp>
 
 // Point-to-point constraint
 // Cdot = v2 - v1

@@ -16,13 +16,13 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_CONTACT_H
-#define B2_CONTACT_H
+#ifndef B2_CONTACT_HPP
+#define B2_CONTACT_HPP
 
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Collision/b2Collision.h>
-#include <Box2D/Collision/Shapes/b2Shape.h>
-#include <Box2D/Dynamics/b2Fixture.h>
+#include <Box2D/Common/b2Math.hpp>
+#include <Box2D/Collision/b2Collision.hpp>
+#include <Box2D/Collision/Shapes/b2Shape.hpp>
+#include <Box2D/Dynamics/b2Fixture.hpp>
 
 class b2Body;
 class b2Contact;
@@ -346,4 +346,4 @@ inline float32 b2Contact::GetTangentSpeed() const
 	return m_tangentSpeed;
 }
 
-#endif
+#endif // B2_CONTACT_HPP

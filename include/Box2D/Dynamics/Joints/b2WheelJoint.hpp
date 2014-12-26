@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_WHEEL_JOINT_H
-#define B2_WHEEL_JOINT_H
+#ifndef B2_WHEEL_JOINT_HPP
+#define B2_WHEEL_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 /// Wheel joint definition. This requires defining a line of
 /// motion using an axis and an anchor point. The definition uses local
@@ -207,4 +207,4 @@ inline float32 b2WheelJoint::GetSpringDampingRatio() const
 	return m_dampingRatio;
 }
 
-#endif
+#endif // B2_WHEEL_JOINT_HPP

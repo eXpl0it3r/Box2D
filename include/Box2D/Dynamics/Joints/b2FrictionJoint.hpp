@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_FRICTION_JOINT_H
-#define B2_FRICTION_JOINT_H
+#ifndef B2_FRICTION_JOINT_HPP
+#define B2_FRICTION_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 /// Friction joint definition.
 struct b2FrictionJointDef : public b2JointDef
@@ -116,4 +116,4 @@ protected:
 	float32 m_angularMass;
 };
 
-#endif
+#endif // B2_FRICTION_JOINT_HPP

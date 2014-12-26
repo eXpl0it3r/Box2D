@@ -16,11 +16,11 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_TIME_OF_IMPACT_H
-#define B2_TIME_OF_IMPACT_H
+#ifndef B2_TIME_OF_IMPACT_HPP
+#define B2_TIME_OF_IMPACT_HPP
 
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Collision/b2Distance.h>
+#include <Box2D/Common/b2Math.hpp>
+#include <Box2D/Collision/b2Distance.hpp>
 
 /// Input parameters for b2TimeOfImpact
 struct b2TOIInput
@@ -55,4 +55,4 @@ struct b2TOIOutput
 /// Note: use b2Distance to compute the contact point and normal at the time of impact.
 void b2TimeOfImpact(b2TOIOutput* output, const b2TOIInput* input);
 
-#endif
+#endif // B2_TIME_OF_IMPACT_HPP

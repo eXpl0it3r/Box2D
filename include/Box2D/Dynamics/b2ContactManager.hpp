@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_CONTACT_MANAGER_H
-#define B2_CONTACT_MANAGER_H
+#ifndef B2_CONTACT_MANAGER_HPP
+#define B2_CONTACT_MANAGER_HPP
 
-#include <Box2D/Collision/b2BroadPhase.h>
+#include <Box2D/Collision/b2BroadPhase.hpp>
 
 class b2Contact;
 class b2ContactFilter;
@@ -49,4 +49,4 @@ public:
 	b2BlockAllocator* m_allocator;
 };
 
-#endif
+#endif // B2_CONTACT_MANAGER_HPP

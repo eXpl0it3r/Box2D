@@ -18,19 +18,19 @@ set(BOX2D_VERSION 2.3.2)
 set(LIB_INSTALL_DIR lib${LIB_SUFFIX})
 
 # The Box2D library.
-add_subdirectory(Box2D)
+add_subdirectory(src)
 
 if(BOX2D_BUILD_EXAMPLES)
   # HelloWorld console example.
-  add_subdirectory(HelloWorld)
+  add_subdirectory(examples/HelloWorld)
 
   # Testbed and dependencies.
   find_package(OpenGL REQUIRED)
-  add_subdirectory(glew)
-  add_subdirectory(glfw)
-  add_subdirectory(Testbed)
+  add_subdirectory(examples/extlibs/glew)
+  add_subdirectory(examples/extlibs/glfw)
+  add_subdirectory(examples/Testbed)
 endif(BOX2D_BUILD_EXAMPLES)
 
 if(BOX2D_INSTALL_DOC)
-  install(DIRECTORY Documentation DESTINATION share/doc/Box2D PATTERN ".svn" EXCLUDE)
+  install(DIRECTORY doc DESTINATION share/doc/Box2D)
 endif(BOX2D_INSTALL_DOC)

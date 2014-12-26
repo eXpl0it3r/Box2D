@@ -16,15 +16,15 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_WORLD_H
-#define B2_WORLD_H
+#ifndef B2_WORLD_HPP
+#define B2_WORLD_HPP
 
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Common/b2BlockAllocator.h>
-#include <Box2D/Common/b2StackAllocator.h>
-#include <Box2D/Dynamics/b2ContactManager.h>
-#include <Box2D/Dynamics/b2WorldCallbacks.h>
-#include <Box2D/Dynamics/b2TimeStep.h>
+#include <Box2D/Common/b2Math.hpp>
+#include <Box2D/Common/b2BlockAllocator.hpp>
+#include <Box2D/Common/b2StackAllocator.hpp>
+#include <Box2D/Dynamics/b2ContactManager.hpp>
+#include <Box2D/Dynamics/b2WorldCallbacks.hpp>
+#include <Box2D/Dynamics/b2TimeStep.hpp>
 
 struct b2AABB;
 struct b2BodyDef;
@@ -351,4 +351,4 @@ inline const b2Profile& b2World::GetProfile() const
 	return m_profile;
 }
 
-#endif
+#endif // B2_WORLD_HPP

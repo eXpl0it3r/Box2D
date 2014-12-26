@@ -16,8 +16,8 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_SETTINGS_H
-#define B2_SETTINGS_H
+#ifndef B2_SETTINGS_HPP
+#define B2_SETTINGS_HPP
 
 #include <stddef.h>
 #include <assert.h>
@@ -148,4 +148,4 @@ struct b2Version
 /// Current version.
 extern b2Version b2_version;
 
-#endif
+#endif // B2_SETTINGS_HPP

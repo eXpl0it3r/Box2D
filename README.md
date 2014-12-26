@@ -13,7 +13,7 @@ The main motivation behind this port is to provide a true C++ version of Box2D a
 Here, I'll list the main changes and progress:
 
 * [X] Restructure the directory layout
-* [ ] Update the CMake build system
+* [X] Update the CMake build system
 * [ ] Add a true namespace and remove the `b2` prefixes
 * [ ] Use C++ headers instead of C headers
 * [ ] Replace preprocessor constants with C++ constants

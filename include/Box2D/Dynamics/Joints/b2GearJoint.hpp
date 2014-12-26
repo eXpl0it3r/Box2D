@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_GEAR_JOINT_H
-#define B2_GEAR_JOINT_H
+#ifndef B2_GEAR_JOINT_HPP
+#define B2_GEAR_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 /// Gear joint definition. This definition requires two existing
 /// revolute or prismatic joints (any combination will work).
@@ -122,4 +122,4 @@ protected:
 	float32 m_mass;
 };
 
-#endif
+#endif // B2_GEAR_JOINT_HPP

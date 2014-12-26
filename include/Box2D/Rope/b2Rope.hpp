@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_ROPE_H
-#define B2_ROPE_H
+#ifndef B2_ROPE_HPP
+#define B2_ROPE_HPP
 
-#include <Box2D/Common/b2Math.h>
+#include <Box2D/Common/b2Math.hpp>
 
 class b2Draw;
 
@@ -112,4 +112,4 @@ private:
 	float32 m_k3;
 };
 
-#endif
+#endif // B2_ROPE_HPP

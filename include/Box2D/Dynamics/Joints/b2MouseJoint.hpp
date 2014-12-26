@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_MOUSE_JOINT_H
-#define B2_MOUSE_JOINT_H
+#ifndef B2_MOUSE_JOINT_HPP
+#define B2_MOUSE_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 /// Mouse joint definition. This requires a world target point,
 /// tuning parameters, and the time step.
@@ -126,4 +126,4 @@ protected:
 	b2Vec2 m_C;
 };
 
-#endif
+#endif // B2_MOUSE_JOINT_HPP

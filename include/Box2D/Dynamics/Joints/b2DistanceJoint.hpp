@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_DISTANCE_JOINT_H
-#define B2_DISTANCE_JOINT_H
+#ifndef B2_DISTANCE_JOINT_HPP
+#define B2_DISTANCE_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 /// Distance joint definition. This requires defining an
 /// anchor point on both bodies and the non-zero length of the
@@ -166,4 +166,4 @@ inline float32 b2DistanceJoint::GetDampingRatio() const
 	return m_dampingRatio;
 }
 
-#endif
+#endif // B2_DISTANCE_JOINT_HPP

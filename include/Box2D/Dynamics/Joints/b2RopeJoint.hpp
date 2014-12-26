@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_ROPE_JOINT_H
-#define B2_ROPE_JOINT_H
+#ifndef B2_ROPE_JOINT_HPP
+#define B2_ROPE_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 /// Rope joint definition. This requires two body anchor points and
 /// a maximum lengths.
@@ -111,4 +111,4 @@ protected:
 	b2LimitState m_state;
 };
 
-#endif
+#endif // B2_ROPE_JOINT_HPP

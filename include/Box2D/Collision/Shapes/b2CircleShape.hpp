@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_CIRCLE_SHAPE_H
-#define B2_CIRCLE_SHAPE_H
+#ifndef B2_CIRCLE_SHAPE_HPP
+#define B2_CIRCLE_SHAPE_HPP
 
-#include <Box2D/Collision/Shapes/b2Shape.h>
+#include <Box2D/Collision/Shapes/b2Shape.hpp>
 
 /// A circle shape.
 class b2CircleShape : public b2Shape
@@ -88,4 +88,4 @@ inline const b2Vec2& b2CircleShape::GetVertex(int32 index) const
 	return m_p;
 }
 
-#endif
+#endif // B2_CIRCLE_SHAPE_HPP

@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_MATH_H
-#define B2_MATH_H
+#ifndef B2_MATH_HPP
+#define B2_MATH_HPP
 
-#include <Box2D/Common/b2Settings.h>
+#include <Box2D/Common/b2Settings.hpp>
 #include <math.h>
 
 /// This function is used to ensure that a floating point number is not a NaN or infinity.
@@ -717,4 +717,4 @@ inline void b2Sweep::Normalize()
 	a -= d;
 }
 
-#endif
+#endif // B2_MATH_HPP

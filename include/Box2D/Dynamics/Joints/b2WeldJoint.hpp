@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_WELD_JOINT_H
-#define B2_WELD_JOINT_H
+#ifndef B2_WELD_JOINT_HPP
+#define B2_WELD_JOINT_HPP
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include <Box2D/Dynamics/Joints/b2Joint.hpp>
 
 /// Weld joint definition. You need to specify local anchor points
 /// where they are attached and the relative body angle. The position
@@ -123,4 +123,4 @@ protected:
 	b2Mat33 m_mass;
 };
 
-#endif
+#endif // B2_WELD_JOINT_HPP

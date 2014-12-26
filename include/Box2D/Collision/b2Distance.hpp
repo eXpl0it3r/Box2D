@@ -17,10 +17,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_DISTANCE_H
-#define B2_DISTANCE_H
+#ifndef B2_DISTANCE_HPP
+#define B2_DISTANCE_HPP
 
-#include <Box2D/Common/b2Math.h>
+#include <Box2D/Common/b2Math.hpp>
 
 class b2Shape;
 
@@ -138,4 +138,4 @@ inline const b2Vec2& b2DistanceProxy::GetSupportVertex(const b2Vec2& d) const
 	return m_vertices[bestIndex];
 }
 
-#endif
+#endif // B2_DISTANCE_HPP

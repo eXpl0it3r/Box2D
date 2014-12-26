@@ -16,12 +16,12 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_CONTACT_SOLVER_H
-#define B2_CONTACT_SOLVER_H
+#ifndef B2_CONTACT_SOLVER_HPP
+#define B2_CONTACT_SOLVER_HPP
 
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Collision/b2Collision.h>
-#include <Box2D/Dynamics/b2TimeStep.h>
+#include <Box2D/Common/b2Math.hpp>
+#include <Box2D/Collision/b2Collision.hpp>
+#include <Box2D/Dynamics/b2TimeStep.hpp>
 
 class b2Contact;
 class b2Body;
@@ -91,5 +91,4 @@ public:
 	int m_count;
 };
 
-#endif
-
+#endif // B2_CONTACT_SOLVER_HPP

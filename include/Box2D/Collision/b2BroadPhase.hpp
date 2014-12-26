@@ -16,12 +16,12 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_BROAD_PHASE_H
-#define B2_BROAD_PHASE_H
+#ifndef B2_BROAD_PHASE_HPP
+#define B2_BROAD_PHASE_HPP
 
-#include <Box2D/Common/b2Settings.h>
-#include <Box2D/Collision/b2Collision.h>
-#include <Box2D/Collision/b2DynamicTree.h>
+#include <Box2D/Common/b2Settings.hpp>
+#include <Box2D/Collision/b2Collision.hpp>
+#include <Box2D/Collision/b2DynamicTree.hpp>
 #include <algorithm>
 
 struct b2Pair
@@ -254,4 +254,4 @@ inline void b2BroadPhase::ShiftOrigin(const b2Vec2& newOrigin)
 	m_tree.ShiftOrigin(newOrigin);
 }
 
-#endif
+#endif // B2_BROAD_PHASE_HPP

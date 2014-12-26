@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_POLYGON_SHAPE_H
-#define B2_POLYGON_SHAPE_H
+#ifndef B2_POLYGON_SHAPE_HPP
+#define B2_POLYGON_SHAPE_HPP
 
-#include <Box2D/Collision/Shapes/b2Shape.h>
+#include <Box2D/Collision/Shapes/b2Shape.hpp>
 
 /// A convex polygon. It is assumed that the interior of the polygon is to
 /// the left of each edge.
@@ -98,4 +98,4 @@ inline const b2Vec2& b2PolygonShape::GetVertex(int32 index) const
 	return m_vertices[index];
 }
 
-#endif
+#endif // B2_POLYGON_SHAPE_HPP

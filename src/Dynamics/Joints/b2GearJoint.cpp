@@ -16,11 +16,11 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <Box2D/Dynamics/Joints/b2GearJoint.h>
-#include <Box2D/Dynamics/Joints/b2RevoluteJoint.h>
-#include <Box2D/Dynamics/Joints/b2PrismaticJoint.h>
-#include <Box2D/Dynamics/b2Body.h>
-#include <Box2D/Dynamics/b2TimeStep.h>
+#include <Box2D/Dynamics/Joints/b2GearJoint.hpp>
+#include <Box2D/Dynamics/Joints/b2RevoluteJoint.hpp>
+#include <Box2D/Dynamics/Joints/b2PrismaticJoint.hpp>
+#include <Box2D/Dynamics/b2Body.hpp>
+#include <Box2D/Dynamics/b2TimeStep.hpp>
 
 // Gear Joint:
 // C0 = (coordinate1 + ratio * coordinate2)_initial

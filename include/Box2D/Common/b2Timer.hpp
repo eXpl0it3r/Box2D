@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_TIMER_H
-#define B2_TIMER_H
+#ifndef B2_TIMER_HPP
+#define B2_TIMER_HPP
 
-#include <Box2D/Common/b2Settings.h>
+#include <Box2D/Common/b2Settings.hpp>
 
 /// Timer for profiling. This has platform specific code and may
 /// not work on every platform.
@@ -47,4 +47,4 @@ private:
 #endif
 };
 
-#endif
+#endif // B2_TIMER_HPP

@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_BLOCK_ALLOCATOR_H
-#define B2_BLOCK_ALLOCATOR_H
+#ifndef B2_BLOCK_ALLOCATOR_HPP
+#define B2_BLOCK_ALLOCATOR_HPP
 
-#include <Box2D/Common/b2Settings.h>
+#include <Box2D/Common/b2Settings.hpp>
 
 const int32 b2_chunkSize = 16 * 1024;
 const int32 b2_maxBlockSize = 640;
@@ -59,4 +59,4 @@ private:
 	static bool s_blockSizeLookupInitialized;
 };
 
-#endif
+#endif // B2_BLOCK_ALLOCATOR_HPP

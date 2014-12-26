@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_COLLISION_H
-#define B2_COLLISION_H
+#ifndef B2_COLLISION_HPP
+#define B2_COLLISION_HPP
 
-#include <Box2D/Common/b2Math.h>
+#include <Box2D/Common/b2Math.hpp>
 #include <limits.h>
 
 /// @file
@@ -274,4 +274,4 @@ inline bool b2TestOverlap(const b2AABB& a, const b2AABB& b)
 	return true;
 }
 
-#endif
+#endif // B2_COLLISION_HPP

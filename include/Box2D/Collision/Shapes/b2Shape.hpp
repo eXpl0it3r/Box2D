@@ -16,12 +16,12 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_SHAPE_H
-#define B2_SHAPE_H
+#ifndef B2_SHAPE_HPP
+#define B2_SHAPE_HPP
 
-#include <Box2D/Common/b2BlockAllocator.h>
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Collision/b2Collision.h>
+#include <Box2D/Common/b2BlockAllocator.hpp>
+#include <Box2D/Common/b2Math.hpp>
+#include <Box2D/Collision/b2Collision.hpp>
 
 /// This holds the mass data computed for a shape.
 struct b2MassData
@@ -98,4 +98,4 @@ inline b2Shape::Type b2Shape::GetType() const
 	return m_type;
 }
 
-#endif
+#endif // B2_SHAPE_HPP

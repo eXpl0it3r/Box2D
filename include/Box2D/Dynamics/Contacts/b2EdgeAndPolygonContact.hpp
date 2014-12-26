@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_EDGE_AND_POLYGON_CONTACT_H
-#define B2_EDGE_AND_POLYGON_CONTACT_H
+#ifndef B2_EDGE_AND_POLYGON_CONTACT_HPP
+#define B2_EDGE_AND_POLYGON_CONTACT_HPP
 
-#include <Box2D/Dynamics/Contacts/b2Contact.h>
+#include <Box2D/Dynamics/Contacts/b2Contact.hpp>
 
 class b2BlockAllocator;
 
@@ -36,4 +36,4 @@ public:
 	void Evaluate(b2Manifold* manifold, const b2Transform& xfA, const b2Transform& xfB);
 };
 
-#endif
+#endif // B2_EDGE_AND_POLYGON_CONTACT_HPP

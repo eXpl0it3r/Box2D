@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_TIME_STEP_H
-#define B2_TIME_STEP_H
+#ifndef B2_TIME_STEP_HPP
+#define B2_TIME_STEP_HPP
 
-#include <Box2D/Common/b2Math.h>
+#include <Box2D/Common/b2Math.hpp>
 
 /// Profiling data. Times are in milliseconds.
 struct b2Profile
@@ -67,4 +67,4 @@ struct b2SolverData
 	b2Velocity* velocities;
 };
 
-#endif
+#endif // B2_TIME_STEP_HPP

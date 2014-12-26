@@ -16,12 +16,12 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_ISLAND_H
-#define B2_ISLAND_H
+#ifndef B2_ISLAND_HPP
+#define B2_ISLAND_HPP
 
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Dynamics/b2Body.h>
-#include <Box2D/Dynamics/b2TimeStep.h>
+#include <Box2D/Common/b2Math.hpp>
+#include <Box2D/Dynamics/b2Body.hpp>
+#include <Box2D/Dynamics/b2TimeStep.hpp>
 
 class b2Contact;
 class b2Joint;
@@ -90,4 +90,4 @@ public:
 	int32 m_jointCapacity;
 };
 
-#endif
+#endif // B2_ISLAND_HPP

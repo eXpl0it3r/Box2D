@@ -16,8 +16,8 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <Box2D/Common/b2StackAllocator.h>
-#include <Box2D/Common/b2Math.h>
+#include <Box2D/Common/b2StackAllocator.hpp>
+#include <Box2D/Common/b2Math.hpp>
 
 b2StackAllocator::b2StackAllocator()
 {
