@@ -31,38 +31,38 @@ For discussion please visit http://box2d.org/forum
 
 // These include files constitute the main Box2D API
 
-#include <Box2D/Common/b2Settings.hpp>
-#include <Box2D/Common/b2Draw.hpp>
-#include <Box2D/Common/b2Timer.hpp>
+#include <Box2D/Common/Settings.hpp>
+#include <Box2D/Common/Draw.hpp>
+#include <Box2D/Common/Timer.hpp>
 
-#include <Box2D/Collision/Shapes/b2CircleShape.hpp>
-#include <Box2D/Collision/Shapes/b2EdgeShape.hpp>
-#include <Box2D/Collision/Shapes/b2ChainShape.hpp>
-#include <Box2D/Collision/Shapes/b2PolygonShape.hpp>
+#include <Box2D/Collision/Shapes/CircleShape.hpp>
+#include <Box2D/Collision/Shapes/EdgeShape.hpp>
+#include <Box2D/Collision/Shapes/ChainShape.hpp>
+#include <Box2D/Collision/Shapes/PolygonShape.hpp>
 
-#include <Box2D/Collision/b2BroadPhase.hpp>
-#include <Box2D/Collision/b2Distance.hpp>
-#include <Box2D/Collision/b2DynamicTree.hpp>
-#include <Box2D/Collision/b2TimeOfImpact.hpp>
+#include <Box2D/Collision/BroadPhase.hpp>
+#include <Box2D/Collision/Distance.hpp>
+#include <Box2D/Collision/DynamicTree.hpp>
+#include <Box2D/Collision/TimeOfImpact.hpp>
 
-#include <Box2D/Dynamics/b2Body.hpp>
-#include <Box2D/Dynamics/b2Fixture.hpp>
-#include <Box2D/Dynamics/b2WorldCallbacks.hpp>
-#include <Box2D/Dynamics/b2TimeStep.hpp>
-#include <Box2D/Dynamics/b2World.hpp>
+#include <Box2D/Dynamics/Body.hpp>
+#include <Box2D/Dynamics/Fixture.hpp>
+#include <Box2D/Dynamics/WorldCallbacks.hpp>
+#include <Box2D/Dynamics/TimeStep.hpp>
+#include <Box2D/Dynamics/World.hpp>
 
-#include <Box2D/Dynamics/Contacts/b2Contact.hpp>
+#include <Box2D/Dynamics/Contacts/Contact.hpp>
 
-#include <Box2D/Dynamics/Joints/b2DistanceJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2FrictionJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2GearJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2MotorJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2MouseJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2PrismaticJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2PulleyJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2RevoluteJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2RopeJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2WeldJoint.hpp>
-#include <Box2D/Dynamics/Joints/b2WheelJoint.hpp>
+#include <Box2D/Dynamics/Joints/DistanceJoint.hpp>
+#include <Box2D/Dynamics/Joints/FrictionJoint.hpp>
+#include <Box2D/Dynamics/Joints/GearJoint.hpp>
+#include <Box2D/Dynamics/Joints/MotorJoint.hpp>
+#include <Box2D/Dynamics/Joints/MouseJoint.hpp>
+#include <Box2D/Dynamics/Joints/PrismaticJoint.hpp>
+#include <Box2D/Dynamics/Joints/PulleyJoint.hpp>
+#include <Box2D/Dynamics/Joints/RevoluteJoint.hpp>
+#include <Box2D/Dynamics/Joints/RopeJoint.hpp>
+#include <Box2D/Dynamics/Joints/WeldJoint.hpp>
+#include <Box2D/Dynamics/Joints/WheelJoint.hpp>
 
 #endif // BOX2D_HPP
