@@ -39,7 +39,7 @@ class ContactListener;
 /// For example, anything slides on ice.
 inline float32 MixFriction(float32 friction1, float32 friction2)
 {
-	return Sqrt(friction1 * friction2);
+	return sqrtf(friction1 * friction2);
 }
 
 /// Restitution mixing law. The idea is allow for anything to bounce off an inelastic surface.

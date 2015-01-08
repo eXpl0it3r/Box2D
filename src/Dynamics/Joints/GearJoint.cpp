@@ -53,8 +53,8 @@ GearJoint::GearJoint(const GearJointDef* def)
 	m_typeA = m_joint1->GetType();
 	m_typeB = m_joint2->GetType();
 
-	Assert(m_typeA == e_revoluteJoint || m_typeA == e_prismaticJoint);
-	Assert(m_typeB == e_revoluteJoint || m_typeB == e_prismaticJoint);
+	assert(m_typeA == e_revoluteJoint || m_typeA == e_prismaticJoint);
+	assert(m_typeB == e_revoluteJoint || m_typeB == e_prismaticJoint);
 
 	float32 coordinateA, coordinateB;
 
@@ -394,7 +394,7 @@ float32 GearJoint::GetReactionTorque(float32 inv_dt) const
 
 void GearJoint::SetRatio(float32 ratio)
 {
-	Assert(IsValid(ratio));
+	assert(IsValid(ratio));
 	m_ratio = ratio;
 }
 

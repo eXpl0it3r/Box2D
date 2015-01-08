@@ -87,7 +87,7 @@ inline const Vec2& CircleShape::GetSupportVertex(const Vec2 &d) const
 inline const Vec2& CircleShape::GetVertex(int32 index) const
 {
 	B2_NOT_USED(index);
-	Assert(index == 0);
+	assert(index == 0);
 	return m_p;
 }
 

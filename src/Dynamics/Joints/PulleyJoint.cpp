@@ -51,7 +51,7 @@ void PulleyJointDef::Initialize(Body* bA, Body* bB,
 	Vec2 dB = anchorB - groundB;
 	lengthB = dB.Length();
 	ratio = r;
-	Assert(ratio > epsilon);
+	assert(ratio > epsilon);
 }
 
 PulleyJoint::PulleyJoint(const PulleyJointDef* def)
@@ -65,7 +65,7 @@ PulleyJoint::PulleyJoint(const PulleyJointDef* def)
 	m_lengthA = def->lengthA;
 	m_lengthB = def->lengthB;
 
-	Assert(def->ratio != 0.0f);
+	assert(def->ratio != 0.0f);
 	m_ratio = def->ratio;
 
 	m_constant = def->lengthA + m_ratio * def->lengthB;

@@ -54,7 +54,7 @@ public:
 
 	void Add(Body* body)
 	{
-		Assert(m_bodyCount < m_bodyCapacity);
+		assert(m_bodyCount < m_bodyCapacity);
 		body->m_islandIndex = m_bodyCount;
 		m_bodies[m_bodyCount] = body;
 		++m_bodyCount;
@@ -62,13 +62,13 @@ public:
 
 	void Add(Contact* contact)
 	{
-		Assert(m_contactCount < m_contactCapacity);
+		assert(m_contactCount < m_contactCapacity);
 		m_contacts[m_contactCount++] = contact;
 	}
 
 	void Add(Joint* joint)
 	{
-		Assert(m_jointCount < m_jointCapacity);
+		assert(m_jointCount < m_jointCapacity);
 		m_joints[m_jointCount++] = joint;
 	}
 

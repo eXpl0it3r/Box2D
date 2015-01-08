@@ -27,12 +27,12 @@ namespace b2
 
 Body::Body(const BodyDef* bd, World* world)
 {
-	Assert(bd->position.IsValid());
-	Assert(bd->linearVelocity.IsValid());
-	Assert(IsValid(bd->angle));
-	Assert(IsValid(bd->angularVelocity));
-	Assert(IsValid(bd->angularDamping) && bd->angularDamping >= 0.0f);
-	Assert(IsValid(bd->linearDamping) && bd->linearDamping >= 0.0f);
+	assert(bd->position.IsValid());
+	assert(bd->linearVelocity.IsValid());
+	assert(IsValid(bd->angle));
+	assert(IsValid(bd->angularVelocity));
+	assert(IsValid(bd->angularDamping) && bd->angularDamping >= 0.0f);
+	assert(IsValid(bd->linearDamping) && bd->linearDamping >= 0.0f);
 
 	m_flags = 0;
 
@@ -115,7 +115,7 @@ Body::~Body()
 
 void Body::SetType(BodyType type)
 {
-	Assert(m_world->IsLocked() == false);
+	assert(m_world->IsLocked() == false);
 	if (m_world->IsLocked() == true)
 	{
 		return;
@@ -168,7 +168,7 @@ void Body::SetType(BodyType type)
 
 Fixture* Body::CreateFixture(const FixtureDef* def)
 {
-	Assert(m_world->IsLocked() == false);
+	assert(m_world->IsLocked() == false);
 	if (m_world->IsLocked() == true)
 	{
 		return NULL;
@@ -216,16 +216,16 @@ Fixture* Body::CreateFixture(const Shape* shape, float32 density)
 
 void Body::DestroyFixture(Fixture* fixture)
 {
-	Assert(m_world->IsLocked() == false);
+	assert(m_world->IsLocked() == false);
 	if (m_world->IsLocked() == true)
 	{
 		return;
 	}
 
-	Assert(fixture->m_body == this);
+	assert(fixture->m_body == this);
 
 	// Remove the fixture from this body's singly linked list.
-	Assert(m_fixtureCount > 0);
+	assert(m_fixtureCount > 0);
 	Fixture** node = &m_fixtureList;
 	bool found = false;
 	while (*node != NULL)
@@ -241,7 +241,7 @@ void Body::DestroyFixture(Fixture* fixture)
 	}
 
 	// You tried to remove a shape that is not attached to this body.
-	Assert(found);
+	assert(found);
 
 	// Destroy any contacts associated with the fixture.
 	ContactEdge* edge = m_contactList;
@@ -299,7 +299,7 @@ void Body::ResetMassData()
 		return;
 	}
 
-	Assert(m_type == dynamicBody);
+	assert(m_type == dynamicBody);
 
 	// Accumulate mass over all fixtures.
 	Vec2 localCenter = Vec2_zero;
@@ -334,7 +334,7 @@ void Body::ResetMassData()
 	{
 		// Center the inertia about the center of mass.
 		m_I -= m_mass * Dot(localCenter, localCenter);
-		Assert(m_I > 0.0f);
+		assert(m_I > 0.0f);
 		m_invI = 1.0f / m_I;
 
 	}
@@ -355,7 +355,7 @@ void Body::ResetMassData()
 
 void Body::SetMassData(const MassData* massData)
 {
-	Assert(m_world->IsLocked() == false);
+	assert(m_world->IsLocked() == false);
 	if (m_world->IsLocked() == true)
 	{
 		return;
@@ -381,7 +381,7 @@ void Body::SetMassData(const MassData* massData)
 	if (massData->I > 0.0f && (m_flags & Body::e_fixedRotationFlag) == 0)
 	{
 		m_I = massData->I - m_mass * Dot(massData->center, massData->center);
-		Assert(m_I > 0.0f);
+		assert(m_I > 0.0f);
 		m_invI = 1.0f / m_I;
 	}
 
@@ -419,7 +419,7 @@ bool Body::ShouldCollide(const Body* other) const
 
 void Body::SetTransform(const Vec2& position, float32 angle)
 {
-	Assert(m_world->IsLocked() == false);
+	assert(m_world->IsLocked() == false);
 	if (m_world->IsLocked() == true)
 	{
 		return;
@@ -456,7 +456,7 @@ void Body::SynchronizeFixtures()
 
 void Body::SetActive(bool flag)
 {
-	Assert(m_world->IsLocked() == false);
+	assert(m_world->IsLocked() == false);
 
 	if (flag == IsActive())
 	{

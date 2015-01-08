@@ -567,7 +567,7 @@ float32 PrismaticJoint::GetUpperLimit() const
 
 void PrismaticJoint::SetLimits(float32 lower, float32 upper)
 {
-	Assert(lower <= upper);
+	assert(lower <= upper);
 	if (lower != m_lowerTranslation || upper != m_upperTranslation)
 	{
 		m_bodyA->SetAwake(true);

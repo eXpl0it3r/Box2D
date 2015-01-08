@@ -386,8 +386,8 @@ void Island::Solve(Profile* profile, const TimeStep& step, const Vec2& gravity, 
 
 void Island::SolveTOI(const TimeStep& subStep, int32 toiIndexA, int32 toiIndexB)
 {
-	Assert(toiIndexA < m_bodyCount);
-	Assert(toiIndexB < m_bodyCount);
+	assert(toiIndexA < m_bodyCount);
+	assert(toiIndexB < m_bodyCount);
 
 	// Initialize the body state.
 	for (int32 i = 0; i < m_bodyCount; ++i)

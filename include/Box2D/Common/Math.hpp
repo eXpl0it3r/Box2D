@@ -49,9 +49,6 @@ inline float32 InvSqrt(float32 x)
 	return x;
 }
 
-#define	Sqrt(x)	sqrtf(x)
-#define	Atan2(y, x)	atan2f(y, x)
-
 /// A 2D column vector.
 struct Vec2
 {
@@ -103,7 +100,7 @@ struct Vec2
 	/// Get the length of this vector (the norm).
 	float32 Length() const
 	{
-		return Sqrt(x * x + y * y);
+		return sqrtf(x * x + y * y);
 	}
 
 	/// Get the length squared. For performance, use this instead of
@@ -329,7 +326,7 @@ struct Rot
 	/// Get the angle in radians
 	float32 GetAngle() const
 	{
-		return Atan2(s, c);
+		return atan2f(s, c);
 	}
 
 	/// Get the x-axis
@@ -704,7 +701,7 @@ inline void Sweep::GetTransform(Transform* xf, float32 beta) const
 
 inline void Sweep::Advance(float32 alpha)
 {
-	Assert(alpha0 < 1.0f);
+	assert(alpha0 < 1.0f);
 	float32 beta = (alpha - alpha0) / (1.0f - alpha0);
 	c0 += beta * (c - c0);
 	a0 += beta * (a - a0);

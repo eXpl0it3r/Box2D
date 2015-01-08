@@ -97,7 +97,7 @@ inline PolygonShape::PolygonShape()
 
 inline const Vec2& PolygonShape::GetVertex(int32 index) const
 {
-	Assert(0 <= index && index < m_count);
+	assert(0 <= index && index < m_count);
 	return m_vertices[index];
 }
 

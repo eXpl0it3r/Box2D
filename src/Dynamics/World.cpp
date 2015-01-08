@@ -109,7 +109,7 @@ void World::SetDebugDraw(Draw* debugDraw)
 
 Body* World::CreateBody(const BodyDef* def)
 {
-	Assert(IsLocked() == false);
+	assert(IsLocked() == false);
 	if (IsLocked())
 	{
 		return NULL;
@@ -133,8 +133,8 @@ Body* World::CreateBody(const BodyDef* def)
 
 void World::DestroyBody(Body* b)
 {
-	Assert(m_bodyCount > 0);
-	Assert(IsLocked() == false);
+	assert(m_bodyCount > 0);
+	assert(IsLocked() == false);
 	if (IsLocked())
 	{
 		return;
@@ -214,7 +214,7 @@ void World::DestroyBody(Body* b)
 
 Joint* World::CreateJoint(const JointDef* def)
 {
-	Assert(IsLocked() == false);
+	assert(IsLocked() == false);
 	if (IsLocked())
 	{
 		return NULL;
@@ -274,7 +274,7 @@ Joint* World::CreateJoint(const JointDef* def)
 
 void World::DestroyJoint(Joint* j)
 {
-	Assert(IsLocked() == false);
+	assert(IsLocked() == false);
 	if (IsLocked())
 	{
 		return;
@@ -346,7 +346,7 @@ void World::DestroyJoint(Joint* j)
 
 	Joint::Destroy(j, &m_blockAllocator);
 
-	Assert(m_jointCount > 0);
+	assert(m_jointCount > 0);
 	--m_jointCount;
 
 	// If the joint prevents collisions, then flag any contacts for filtering.
@@ -445,7 +445,7 @@ void World::Solve(const TimeStep& step)
 		{
 			// Grab the next body off the stack and add it to the island.
 			Body* b = stack[--stackCount];
-			Assert(b->IsActive() == true);
+			assert(b->IsActive() == true);
 			island.Add(b);
 
 			// Make sure the body is awake.
@@ -495,7 +495,7 @@ void World::Solve(const TimeStep& step)
 					continue;
 				}
 
-				Assert(stackCount < stackSize);
+				assert(stackCount < stackSize);
 				stack[stackCount++] = other;
 				other->m_flags |= Body::e_islandFlag;
 			}
@@ -524,7 +524,7 @@ void World::Solve(const TimeStep& step)
 					continue;
 				}
 
-				Assert(stackCount < stackSize);
+				assert(stackCount < stackSize);
 				stack[stackCount++] = other;
 				other->m_flags |= Body::e_islandFlag;
 			}
@@ -641,7 +641,7 @@ void World::SolveTOI(const TimeStep& step)
 
 				BodyType typeA = bA->m_type;
 				BodyType typeB = bB->m_type;
-				Assert(typeA == dynamicBody || typeB == dynamicBody);
+				assert(typeA == dynamicBody || typeB == dynamicBody);
 
 				bool activeA = bA->IsAwake() && typeA != staticBody;
 				bool activeB = bB->IsAwake() && typeB != staticBody;
@@ -676,7 +676,7 @@ void World::SolveTOI(const TimeStep& step)
 					bB->m_sweep.Advance(alpha0);
 				}
 
-				Assert(alpha0 < 1.0f);
+				assert(alpha0 < 1.0f);
 
 				int32 indexA = c->GetChildIndexA();
 				int32 indexB = c->GetChildIndexB();
@@ -1077,7 +1077,7 @@ void World::DrawShape(Fixture* fixture, const Transform& xf, const Color& color)
 		{
 			PolygonShape* poly = (PolygonShape*)fixture->GetShape();
 			int32 vertexCount = poly->m_count;
-			Assert(vertexCount <= maxPolygonVertices);
+			assert(vertexCount <= maxPolygonVertices);
 			Vec2 vertices[maxPolygonVertices];
 
 			for (int32 i = 0; i < vertexCount; ++i)
@@ -1261,7 +1261,7 @@ float32 World::GetTreeQuality() const
 
 void World::ShiftOrigin(const Vec2& newOrigin)
 {
-	Assert((m_flags & e_locked) == 0);
+	assert((m_flags & e_locked) == 0);
 	if ((m_flags & e_locked) == e_locked)
 	{
 		return;

@@ -32,13 +32,13 @@ StackAllocator::StackAllocator()
 
 StackAllocator::~StackAllocator()
 {
-	Assert(m_index == 0);
-	Assert(m_entryCount == 0);
+	assert(m_index == 0);
+	assert(m_entryCount == 0);
 }
 
 void* StackAllocator::Allocate(int32 size)
 {
-	Assert(m_entryCount < maxStackEntries);
+	assert(m_entryCount < maxStackEntries);
 
 	StackEntry* entry = m_entries + m_entryCount;
 	entry->size = size;
@@ -63,9 +63,9 @@ void* StackAllocator::Allocate(int32 size)
 
 void StackAllocator::Free(void* p)
 {
-	Assert(m_entryCount > 0);
+	assert(m_entryCount > 0);
 	StackEntry* entry = m_entries + m_entryCount - 1;
-	Assert(p == entry->data);
+	assert(p == entry->data);
 	if (entry->usedMalloc)
 	{
 		Free(p);

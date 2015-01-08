@@ -126,7 +126,7 @@ void CollideEdgeAndCircle(Manifold* manifold,
 	
 	// Region AB
 	float32 den = Dot(e, e);
-	Assert(den > 0.0f);
+	assert(den > 0.0f);
 	Vec2 P = (1.0f / den) * (u * A + v * B);
 	Vec2 d = Q - P;
 	float32 dd = Dot(d, d);

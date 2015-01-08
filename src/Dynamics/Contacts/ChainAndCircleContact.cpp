@@ -42,8 +42,8 @@ void ChainAndCircleContact::Destroy(Contact* contact, BlockAllocator* allocator)
 ChainAndCircleContact::ChainAndCircleContact(Fixture* fixtureA, int32 indexA, Fixture* fixtureB, int32 indexB)
 : Contact(fixtureA, indexA, fixtureB, indexB)
 {
-	Assert(m_fixtureA->GetType() == Shape::e_chain);
-	Assert(m_fixtureB->GetType() == Shape::e_circle);
+	assert(m_fixtureA->GetType() == Shape::e_chain);
+	assert(m_fixtureB->GetType() == Shape::e_circle);
 }
 
 void ChainAndCircleContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB)

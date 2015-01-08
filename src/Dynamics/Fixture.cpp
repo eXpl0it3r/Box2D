@@ -72,7 +72,7 @@ void Fixture::Create(BlockAllocator* allocator, Body* body, const FixtureDef* de
 void Fixture::Destroy(BlockAllocator* allocator)
 {
 	// The proxies must be destroyed before calling this.
-	Assert(m_proxyCount == 0);
+	assert(m_proxyCount == 0);
 
 	// Free the proxy array.
 	int32 childCount = m_shape->GetChildCount();
@@ -115,7 +115,7 @@ void Fixture::Destroy(BlockAllocator* allocator)
 		break;
 
 	default:
-		Assert(false);
+		assert(false);
 		break;
 	}
 
@@ -124,7 +124,7 @@ void Fixture::Destroy(BlockAllocator* allocator)
 
 void Fixture::CreateProxies(BroadPhase* broadPhase, const Transform& xf)
 {
-	Assert(m_proxyCount == 0);
+	assert(m_proxyCount == 0);
 
 	// Create proxies in the broad-phase.
 	m_proxyCount = m_shape->GetChildCount();

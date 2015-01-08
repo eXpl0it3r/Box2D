@@ -228,7 +228,7 @@ float32 MotorJoint::GetReactionTorque(float32 inv_dt) const
 
 void MotorJoint::SetMaxForce(float32 force)
 {
-	Assert(IsValid(force) && force >= 0.0f);
+	assert(IsValid(force) && force >= 0.0f);
 	m_maxForce = force;
 }
 
@@ -239,7 +239,7 @@ float32 MotorJoint::GetMaxForce() const
 
 void MotorJoint::SetMaxTorque(float32 torque)
 {
-	Assert(IsValid(torque) && torque >= 0.0f);
+	assert(IsValid(torque) && torque >= 0.0f);
 	m_maxTorque = torque;
 }
 
@@ -250,7 +250,7 @@ float32 MotorJoint::GetMaxTorque() const
 
 void MotorJoint::SetCorrectionFactor(float32 factor)
 {
-	Assert(IsValid(factor) && 0.0f <= factor && factor <= 1.0f);
+	assert(IsValid(factor) && 0.0f <= factor && factor <= 1.0f);
 	m_correctionFactor = factor;
 }
 

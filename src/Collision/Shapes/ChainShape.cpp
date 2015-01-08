@@ -38,14 +38,14 @@ void ChainShape::Clear()
 
 void ChainShape::CreateLoop(const Vec2* vertices, int32 count)
 {
-	Assert(m_vertices == NULL && m_count == 0);
-	Assert(count >= 3);
+	assert(m_vertices == NULL && m_count == 0);
+	assert(count >= 3);
 	for (int32 i = 1; i < count; ++i)
 	{
 		Vec2 v1 = vertices[i-1];
 		Vec2 v2 = vertices[i];
 		// If the code crashes here, it means your vertices are too close together.
-		Assert(DistanceSquared(v1, v2) > linearSlop * linearSlop);
+		assert(DistanceSquared(v1, v2) > linearSlop * linearSlop);
 	}
 
 	m_count = count + 1;
@@ -60,12 +60,12 @@ void ChainShape::CreateLoop(const Vec2* vertices, int32 count)
 
 void ChainShape::CreateChain(const Vec2* vertices, int32 count)
 {
-	Assert(m_vertices == NULL && m_count == 0);
-	Assert(count >= 2);
+	assert(m_vertices == NULL && m_count == 0);
+	assert(count >= 2);
 	for (int32 i = 1; i < count; ++i)
 	{
 		// If the code crashes here, it means your vertices are too close together.
-		Assert(DistanceSquared(vertices[i-1], vertices[i]) > linearSlop * linearSlop);
+		assert(DistanceSquared(vertices[i-1], vertices[i]) > linearSlop * linearSlop);
 	}
 
 	m_count = count;
@@ -111,7 +111,7 @@ int32 ChainShape::GetChildCount() const
 
 void ChainShape::GetChildEdge(EdgeShape* edge, int32 index) const
 {
-	Assert(0 <= index && index < m_count - 1);
+	assert(0 <= index && index < m_count - 1);
 	edge->m_type = Shape::e_edge;
 	edge->m_radius = m_radius;
 
@@ -151,7 +151,7 @@ bool ChainShape::TestPoint(const Transform& xf, const Vec2& p) const
 bool ChainShape::RayCast(RayCastOutput* output, const RayCastInput& input,
 						 const Transform& xf, int32 childIndex) const
 {
-	Assert(childIndex < m_count);
+	assert(childIndex < m_count);
 
 	EdgeShape edgeShape;
 
@@ -170,7 +170,7 @@ bool ChainShape::RayCast(RayCastOutput* output, const RayCastInput& input,
 
 void ChainShape::ComputeAABB(AABB* aabb, const Transform& xf, int32 childIndex) const
 {
-	Assert(childIndex < m_count);
+	assert(childIndex < m_count);
 
 	int32 i1 = childIndex;
 	int32 i2 = childIndex + 1;

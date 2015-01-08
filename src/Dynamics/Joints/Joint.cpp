@@ -121,7 +121,7 @@ Joint* Joint::Create(const JointDef* def, BlockAllocator* allocator)
 		break;
 
 	default:
-		Assert(false);
+		assert(false);
 		break;
 	}
 
@@ -178,14 +178,14 @@ void Joint::Destroy(Joint* joint, BlockAllocator* allocator)
 		break;
 
 	default:
-		Assert(false);
+		assert(false);
 		break;
 	}
 }
 
 Joint::Joint(const JointDef* def)
 {
-	Assert(def->bodyA != def->bodyB);
+	assert(def->bodyA != def->bodyB);
 
 	m_type = def->type;
 	m_prev = NULL;

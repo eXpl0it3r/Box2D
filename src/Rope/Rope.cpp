@@ -48,7 +48,7 @@ Rope::~Rope()
 
 void Rope::Initialize(const RopeDef* def)
 {
-	Assert(def->count >= 3);
+	assert(def->count >= 3);
 	m_count = def->count;
 	m_ps = (Vec2*)Alloc(m_count * sizeof(Vec2));
 	m_p0s = (Vec2*)Alloc(m_count * sizeof(Vec2));
@@ -96,7 +96,7 @@ void Rope::Initialize(const RopeDef* def)
 		float32 a = Cross(d1, d2);
 		float32 b = Dot(d1, d2);
 
-		m_as[i] = Atan2(a, b);
+		m_as[i] = atan2f(a, b);
 	}
 
 	m_gravity = def->gravity;
@@ -208,7 +208,7 @@ void Rope::SolveC3()
 		float32 a = Cross(d1, d2);
 		float32 b = Dot(d1, d2);
 
-		float32 angle = Atan2(a, b);
+		float32 angle = atan2f(a, b);
 
 		Vec2 Jd1 = (-1.0f / L1sqr) * d1.Skew();
 		Vec2 Jd2 = (1.0f / L2sqr) * d2.Skew();

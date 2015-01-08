@@ -67,7 +67,7 @@ public:
 
 	T Pop()
 	{
-		Assert(m_count > 0);
+		assert(m_count > 0);
 		--m_count;
 		return m_stack[m_count];
 	}

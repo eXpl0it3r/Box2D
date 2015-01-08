@@ -471,7 +471,7 @@ float32 RevoluteJoint::GetUpperLimit() const
 
 void RevoluteJoint::SetLimits(float32 lower, float32 upper)
 {
-	Assert(lower <= upper);
+	assert(lower <= upper);
 	
 	if (lower != m_lowerAngle || upper != m_upperAngle)
 	{

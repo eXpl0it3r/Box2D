@@ -53,7 +53,7 @@ void DistanceProxy::Set(const Shape* shape, int32 index)
 	case Shape::e_chain:
 		{
 			const ChainShape* chain = static_cast<const ChainShape*>(shape);
-			Assert(0 <= index && index < chain->m_count);
+			assert(0 <= index && index < chain->m_count);
 
 			m_buffer[0] = chain->m_vertices[index];
 			if (index + 1 < chain->m_count)
@@ -81,7 +81,7 @@ void DistanceProxy::Set(const Shape* shape, int32 index)
 		break;
 
 	default:
-		Assert(false);
+		assert(false);
 	}
 }
 
@@ -102,7 +102,7 @@ struct Simplex
 					const DistanceProxy* proxyA, const Transform& transformA,
 					const DistanceProxy* proxyB, const Transform& transformB)
 	{
-		Assert(cache->count <= 3);
+		assert(cache->count <= 3);
 		
 		// Copy data from cache.
 		m_count = cache->count;
@@ -185,7 +185,7 @@ struct Simplex
 			}
 
 		default:
-			Assert(false);
+			assert(false);
 			return Vec2_zero;
 		}
 	}
@@ -195,7 +195,7 @@ struct Simplex
 		switch (m_count)
 		{
 		case 0:
-			Assert(false);
+			assert(false);
 			return Vec2_zero;
 
 		case 1:
@@ -208,7 +208,7 @@ struct Simplex
 			return Vec2_zero;
 
 		default:
-			Assert(false);
+			assert(false);
 			return Vec2_zero;
 		}
 	}
@@ -218,7 +218,7 @@ struct Simplex
 		switch (m_count)
 		{
 		case 0:
-			Assert(false);
+			assert(false);
 			break;
 
 		case 1:
@@ -237,7 +237,7 @@ struct Simplex
 			break;
 
 		default:
-			Assert(false);
+			assert(false);
 			break;
 		}
 	}
@@ -247,7 +247,7 @@ struct Simplex
 		switch (m_count)
 		{
 		case 0:
-			Assert(false);
+			assert(false);
 			return 0.0f;
 
 		case 1:
@@ -260,7 +260,7 @@ struct Simplex
 			return Cross(m_v2.w - m_v1.w, m_v3.w - m_v1.w);
 
 		default:
-			Assert(false);
+			assert(false);
 			return 0.0f;
 		}
 	}
@@ -498,7 +498,7 @@ void Distance(DistanceOutput* output,
 			break;
 
 		default:
-			Assert(false);
+			assert(false);
 		}
 
 		// If we have 3 points, then the origin is in the corresponding triangle.

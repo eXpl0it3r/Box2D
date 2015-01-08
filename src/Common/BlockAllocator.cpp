@@ -57,7 +57,7 @@ struct Block
 
 BlockAllocator::BlockAllocator()
 {
-	Assert(blockSizes < UCHAR_MAX);
+	assert(blockSizes < UCHAR_MAX);
 
 	m_chunkSpace = chunkArrayIncrement;
 	m_chunkCount = 0;
@@ -71,7 +71,7 @@ BlockAllocator::BlockAllocator()
 		int32 j = 0;
 		for (int32 i = 1; i <= maxBlockSize; ++i)
 		{
-			Assert(j < blockSizes);
+			assert(j < blockSizes);
 			if (i <= s_blockSizes[j])
 			{
 				s_blockSizeLookup[i] = (uint8)j;
@@ -102,7 +102,7 @@ void* BlockAllocator::Allocate(int32 size)
 	if (size == 0)
 		return NULL;
 
-	Assert(0 < size);
+	assert(0 < size);
 
 	if (size > maxBlockSize)
 	{
@@ -110,7 +110,7 @@ void* BlockAllocator::Allocate(int32 size)
 	}
 
 	int32 index = s_blockSizeLookup[size];
-	Assert(0 <= index && index < blockSizes);
+	assert(0 <= index && index < blockSizes);
 
 	if (m_freeLists[index])
 	{
@@ -138,7 +138,7 @@ void* BlockAllocator::Allocate(int32 size)
 		int32 blockSize = s_blockSizes[index];
 		chunk->blockSize = blockSize;
 		int32 blockCount = chunkSize / blockSize;
-		Assert(blockCount * blockSize <= chunkSize);
+		assert(blockCount * blockSize <= chunkSize);
 		for (int32 i = 0; i < blockCount - 1; ++i)
 		{
 			Block* block = (Block*)((int8*)chunk->blocks + blockSize * i);
@@ -162,7 +162,7 @@ void BlockAllocator::Free(void* p, int32 size)
 		return;
 	}
 
-	Assert(0 < size);
+	assert(0 < size);
 
 	if (size > maxBlockSize)
 	{
@@ -171,7 +171,7 @@ void BlockAllocator::Free(void* p, int32 size)
 	}
 
 	int32 index = s_blockSizeLookup[size];
-	Assert(0 <= index && index < blockSizes);
+	assert(0 <= index && index < blockSizes);
 
 #ifdef _DEBUG
 	// Verify the memory address and size is valid.
@@ -182,7 +182,7 @@ void BlockAllocator::Free(void* p, int32 size)
 		Chunk* chunk = m_chunks + i;
 		if (chunk->blockSize != blockSize)
 		{
-			Assert(	(int8*)p + blockSize <= (int8*)chunk->blocks ||
+			assert(	(int8*)p + blockSize <= (int8*)chunk->blocks ||
 					(int8*)chunk->blocks + chunkSize <= (int8*)p);
 		}
 		else
@@ -194,7 +194,7 @@ void BlockAllocator::Free(void* p, int32 size)
 		}
 	}
 
-	Assert(found);
+	assert(found);
 
 	memset(p, 0xfd, blockSize);
 #endif

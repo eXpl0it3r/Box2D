@@ -54,8 +54,8 @@ void Contact::InitializeRegisters()
 void Contact::AddType(ContactCreateFcn* createFcn, ContactDestroyFcn* destoryFcn,
 					  Shape::Type type1, Shape::Type type2)
 {
-	Assert(0 <= type1 && type1 < Shape::e_typeCount);
-	Assert(0 <= type2 && type2 < Shape::e_typeCount);
+	assert(0 <= type1 && type1 < Shape::e_typeCount);
+	assert(0 <= type2 && type2 < Shape::e_typeCount);
 	
 	s_registers[type1][type2].createFcn = createFcn;
 	s_registers[type1][type2].destroyFcn = destoryFcn;
@@ -80,8 +80,8 @@ Contact* Contact::Create(Fixture* fixtureA, int32 indexA, Fixture* fixtureB, int
 	Shape::Type type1 = fixtureA->GetType();
 	Shape::Type type2 = fixtureB->GetType();
 
-	Assert(0 <= type1 && type1 < Shape::e_typeCount);
-	Assert(0 <= type2 && type2 < Shape::e_typeCount);
+	assert(0 <= type1 && type1 < Shape::e_typeCount);
+	assert(0 <= type2 && type2 < Shape::e_typeCount);
 	
 	ContactCreateFcn* createFcn = s_registers[type1][type2].createFcn;
 	if (createFcn)
@@ -103,7 +103,7 @@ Contact* Contact::Create(Fixture* fixtureA, int32 indexA, Fixture* fixtureB, int
 
 void Contact::Destroy(Contact* contact, BlockAllocator* allocator)
 {
-	Assert(s_initialized == true);
+	assert(s_initialized == true);
 
 	Fixture* fixtureA = contact->m_fixtureA;
 	Fixture* fixtureB = contact->m_fixtureB;
@@ -119,8 +119,8 @@ void Contact::Destroy(Contact* contact, BlockAllocator* allocator)
 	Shape::Type typeA = fixtureA->GetType();
 	Shape::Type typeB = fixtureB->GetType();
 
-	Assert(0 <= typeA && typeB < Shape::e_typeCount);
-	Assert(0 <= typeA && typeB < Shape::e_typeCount);
+	assert(0 <= typeA && typeB < Shape::e_typeCount);
+	assert(0 <= typeA && typeB < Shape::e_typeCount);
 
 	ContactDestroyFcn* destroyFcn = s_registers[typeA][typeB].destroyFcn;
 	destroyFcn(contact, allocator);

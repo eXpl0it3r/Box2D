@@ -34,10 +34,10 @@ namespace b2
 MouseJoint::MouseJoint(const MouseJointDef* def)
 : Joint(def)
 {
-	Assert(def->target.IsValid());
-	Assert(IsValid(def->maxForce) && def->maxForce >= 0.0f);
-	Assert(IsValid(def->frequencyHz) && def->frequencyHz >= 0.0f);
-	Assert(IsValid(def->dampingRatio) && def->dampingRatio >= 0.0f);
+	assert(def->target.IsValid());
+	assert(IsValid(def->maxForce) && def->maxForce >= 0.0f);
+	assert(IsValid(def->frequencyHz) && def->frequencyHz >= 0.0f);
+	assert(IsValid(def->dampingRatio) && def->dampingRatio >= 0.0f);
 
 	m_targetA = def->target;
 	m_localAnchorB = MulT(m_bodyB->GetTransform(), m_targetA);
@@ -125,7 +125,7 @@ void MouseJoint::InitVelocityConstraints(const SolverData& data)
 	// gamma has units of inverse mass.
 	// beta has units of inverse time.
 	float32 h = data.step.dt;
-	Assert(d + h * k > epsilon);
+	assert(d + h * k > epsilon);
 	m_gamma = h * (d + h * k);
 	if (m_gamma != 0.0f)
 	{

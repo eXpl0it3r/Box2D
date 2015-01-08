@@ -73,7 +73,7 @@ ContactSolver::ContactSolver(ContactSolverDef* def)
 		Manifold* manifold = contact->GetManifold();
 
 		int32 pointCount = manifold->pointCount;
-		Assert(pointCount > 0);
+		assert(pointCount > 0);
 
 		ContactVelocityConstraint* vc = m_velocityConstraints + i;
 		vc->friction = contact->m_friction;
@@ -171,7 +171,7 @@ void ContactSolver::InitializeVelocityConstraints()
 		Vec2 vB = m_velocities[indexB].v;
 		float32 wB = m_velocities[indexB].w;
 
-		Assert(manifold->pointCount > 0);
+		assert(manifold->pointCount > 0);
 
 		Transform xfA, xfB;
 		xfA.q.Set(aA);
@@ -314,7 +314,7 @@ void ContactSolver::SolveVelocityConstraints()
 		Vec2 tangent = Cross(normal, 1.0f);
 		float32 friction = vc->friction;
 
-		Assert(pointCount == 1 || pointCount == 2);
+		assert(pointCount == 1 || pointCount == 2);
 
 		// Solve tangent constraints first because non-penetration is more important
 		// than friction.
@@ -412,7 +412,7 @@ void ContactSolver::SolveVelocityConstraints()
 			VelocityConstraintPoint* cp2 = vc->points + 1;
 
 			Vec2 a(cp1->normalImpulse, cp2->normalImpulse);
-			Assert(a.x >= 0.0f && a.y >= 0.0f);
+			assert(a.x >= 0.0f && a.y >= 0.0f);
 
 			// Relative velocity at contact
 			Vec2 dv1 = vB + Cross(wB, cp1->rB) - vA - Cross(wA, cp1->rA);
@@ -472,8 +472,8 @@ void ContactSolver::SolveVelocityConstraints()
 					vn1 = Dot(dv1, normal);
 					vn2 = Dot(dv2, normal);
 
-					Assert(Abs(vn1 - cp1->velocityBias) < k_errorTol);
-					Assert(Abs(vn2 - cp2->velocityBias) < k_errorTol);
+					assert(Abs(vn1 - cp1->velocityBias) < k_errorTol);
+					assert(Abs(vn2 - cp2->velocityBias) < k_errorTol);
 #endif
 					break;
 				}
@@ -514,7 +514,7 @@ void ContactSolver::SolveVelocityConstraints()
 					// Compute normal velocity
 					vn1 = Dot(dv1, normal);
 
-					Assert(Abs(vn1 - cp1->velocityBias) < k_errorTol);
+					assert(Abs(vn1 - cp1->velocityBias) < k_errorTol);
 #endif
 					break;
 				}
@@ -556,7 +556,7 @@ void ContactSolver::SolveVelocityConstraints()
 					// Compute normal velocity
 					vn2 = Dot(dv2, normal);
 
-					Assert(Abs(vn2 - cp2->velocityBias) < k_errorTol);
+					assert(Abs(vn2 - cp2->velocityBias) < k_errorTol);
 #endif
 					break;
 				}
@@ -623,7 +623,7 @@ struct PositionSolverManifold
 {
 	void Initialize(ContactPositionConstraint* pc, const Transform& xfA, const Transform& xfB, int32 index)
 	{
-		Assert(pc->pointCount > 0);
+		assert(pc->pointCount > 0);
 
 		switch (pc->type)
 		{

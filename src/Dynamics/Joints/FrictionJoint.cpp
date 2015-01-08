@@ -217,7 +217,7 @@ float32 FrictionJoint::GetReactionTorque(float32 inv_dt) const
 
 void FrictionJoint::SetMaxForce(float32 force)
 {
-	Assert(IsValid(force) && force >= 0.0f);
+	assert(IsValid(force) && force >= 0.0f);
 	m_maxForce = force;
 }
 
@@ -228,7 +228,7 @@ float32 FrictionJoint::GetMaxForce() const
 
 void FrictionJoint::SetMaxTorque(float32 torque)
 {
-	Assert(IsValid(torque) && torque >= 0.0f);
+	assert(IsValid(torque) && torque >= 0.0f);
 	m_maxTorque = torque;
 }
 

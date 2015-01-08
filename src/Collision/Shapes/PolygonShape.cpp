@@ -76,7 +76,7 @@ int32 PolygonShape::GetChildCount() const
 
 static Vec2 ComputeCentroid(const Vec2* vs, int32 count)
 {
-	Assert(count >= 3);
+	assert(count >= 3);
 
 	Vec2 c; c.Set(0.0f, 0.0f);
 	float32 area = 0.0f;
@@ -115,14 +115,14 @@ static Vec2 ComputeCentroid(const Vec2* vs, int32 count)
 	}
 
 	// Centroid
-	Assert(area > epsilon);
+	assert(area > epsilon);
 	c *= 1.0f / area;
 	return c;
 }
 
 void PolygonShape::Set(const Vec2* vertices, int32 count)
 {
-	Assert(3 <= count && count <= maxPolygonVertices);
+	assert(3 <= count && count <= maxPolygonVertices);
 	if (count < 3)
 	{
 		SetAsBox(1.0f, 1.0f);
@@ -158,7 +158,7 @@ void PolygonShape::Set(const Vec2* vertices, int32 count)
 	if (n < 3)
 	{
 		// Polygon is degenerate.
-		Assert(false);
+		assert(false);
 		SetAsBox(1.0f, 1.0f);
 		return;
 	}
@@ -223,7 +223,7 @@ void PolygonShape::Set(const Vec2* vertices, int32 count)
 	if (m < 3)
 	{
 		// Polygon is degenerate.
-		Assert(false);
+		assert(false);
 		SetAsBox(1.0f, 1.0f);
 		return;
 	}
@@ -242,7 +242,7 @@ void PolygonShape::Set(const Vec2* vertices, int32 count)
 		int32 i1 = i;
 		int32 i2 = i + 1 < m ? i + 1 : 0;
 		Vec2 edge = m_vertices[i2] - m_vertices[i1];
-		Assert(edge.LengthSquared() > epsilon * epsilon);
+		assert(edge.LengthSquared() > epsilon * epsilon);
 		m_normals[i] = Cross(edge, 1.0f);
 		m_normals[i].Normalize();
 	}
@@ -327,7 +327,7 @@ bool PolygonShape::RayCast(RayCastOutput* output, const RayCastInput& input,
 		}
 	}
 
-	Assert(0.0f <= lower && lower <= input.maxFraction);
+	assert(0.0f <= lower && lower <= input.maxFraction);
 
 	if (index >= 0)
 	{
@@ -384,7 +384,7 @@ void PolygonShape::ComputeMass(MassData* massData, float32 density) const
 	//
 	// The rest of the derivation is handled by computer algebra.
 
-	Assert(m_count >= 3);
+	assert(m_count >= 3);
 
 	Vec2 center; center.Set(0.0f, 0.0f);
 	float32 area = 0.0f;
@@ -430,7 +430,7 @@ void PolygonShape::ComputeMass(MassData* massData, float32 density) const
 	massData->mass = density * area;
 
 	// Center of mass
-	Assert(area > epsilon);
+	assert(area > epsilon);
 	center *= 1.0f / area;
 	massData->center = center + s;
 

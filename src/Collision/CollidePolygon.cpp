@@ -74,7 +74,7 @@ static void FindIncidentEdge(ClipVertex c[2],
 	const Vec2* vertices2 = poly2->m_vertices;
 	const Vec2* normals2 = poly2->m_normals;
 
-	Assert(0 <= edge1 && edge1 < poly1->m_count);
+	assert(0 <= edge1 && edge1 < poly1->m_count);
 
 	// Get the normal of the reference edge in poly2's frame.
 	Vec2 normal1 = MulT(xf2.q, Mul(xf1.q, normals1[edge1]));

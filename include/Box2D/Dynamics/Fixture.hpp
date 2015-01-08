@@ -295,7 +295,7 @@ inline const Fixture* Fixture::GetNext() const
 
 inline void Fixture::SetDensity(float32 density)
 {
-	Assert(IsValid(density) && density >= 0.0f);
+	assert(IsValid(density) && density >= 0.0f);
 	m_density = density;
 }
 
@@ -341,7 +341,7 @@ inline void Fixture::GetMassData(MassData* massData) const
 
 inline const AABB& Fixture::GetAABB(int32 childIndex) const
 {
-	Assert(0 <= childIndex && childIndex < m_proxyCount);
+	assert(0 <= childIndex && childIndex < m_proxyCount);
 	return m_proxies[childIndex].aabb;
 }
 

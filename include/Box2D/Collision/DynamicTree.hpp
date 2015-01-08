@@ -22,10 +22,10 @@
 #include <Box2D/Collision/Collision.hpp>
 #include <Box2D/Common/GrowableStack.hpp>
 
-#define nullNode (-1)
-
 namespace b2
 {
+
+const int32 nullNode = -1;
 
 /// A node in the dynamic tree. The client does not interact with this directly.
 struct TreeNode
@@ -158,13 +158,13 @@ private:
 
 inline void* DynamicTree::GetUserData(int32 proxyId) const
 {
-	Assert(0 <= proxyId && proxyId < m_nodeCapacity);
+	assert(0 <= proxyId && proxyId < m_nodeCapacity);
 	return m_nodes[proxyId].userData;
 }
 
 inline const AABB& DynamicTree::GetFatAABB(int32 proxyId) const
 {
-	Assert(0 <= proxyId && proxyId < m_nodeCapacity);
+	assert(0 <= proxyId && proxyId < m_nodeCapacity);
 	return m_nodes[proxyId].aabb;
 }
 
@@ -209,7 +209,7 @@ inline void DynamicTree::RayCast(T* callback, const RayCastInput& input) const
 	Vec2 p1 = input.p1;
 	Vec2 p2 = input.p2;
 	Vec2 r = p2 - p1;
-	Assert(r.LengthSquared() > 0.0f);
+	assert(r.LengthSquared() > 0.0f);
 	r.Normalize();
 
 	// v is perpendicular to the segment.
