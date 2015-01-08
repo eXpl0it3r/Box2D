@@ -23,7 +23,7 @@
 #include <Box2D/Collision/Shapes/PolygonShape.hpp>
 #include <Box2D/Common/Timer.hpp>
 
-#include <stdio.h>
+#include <cstdio>
 
 namespace b2
 {
@@ -344,7 +344,7 @@ void TimeOfImpact(TOIOutput* output, const TOIInput* input)
 				sweepB.GetTransform(&xfB, x);
 				float32 f = fcn.Evaluate(xfA, xfB) - target;
 
-				printf("%g %g\n", x, f);
+				std::printf("%g %g\n", x, f);
 
 				xs[i] = x;
 				fs[i] = f;

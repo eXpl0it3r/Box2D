@@ -17,9 +17,9 @@
 */
 
 #include <Box2D/Common/BlockAllocator.hpp>
-#include <limits.h>
-#include <string.h>
-#include <stddef.h>
+#include <climits>
+#include <cstring>
+#include <cstddef>
 
 namespace b2
 {
@@ -63,8 +63,8 @@ BlockAllocator::BlockAllocator()
 	m_chunkCount = 0;
 	m_chunks = (Chunk*)Alloc(m_chunkSpace * sizeof(Chunk));
 	
-	memset(m_chunks, 0, m_chunkSpace * sizeof(Chunk));
-	memset(m_freeLists, 0, sizeof(m_freeLists));
+	std::memset(m_chunks, 0, m_chunkSpace * sizeof(Chunk));
+	std::memset(m_freeLists, 0, sizeof(m_freeLists));
 
 	if (s_blockSizeLookupInitialized == false)
 	{
@@ -125,15 +125,15 @@ void* BlockAllocator::Allocate(int32 size)
 			Chunk* oldChunks = m_chunks;
 			m_chunkSpace += chunkArrayIncrement;
 			m_chunks = (Chunk*)Alloc(m_chunkSpace * sizeof(Chunk));
-			memcpy(m_chunks, oldChunks, m_chunkCount * sizeof(Chunk));
-			memset(m_chunks + m_chunkCount, 0, chunkArrayIncrement * sizeof(Chunk));
+			std::memcpy(m_chunks, oldChunks, m_chunkCount * sizeof(Chunk));
+			std::memset(m_chunks + m_chunkCount, 0, chunkArrayIncrement * sizeof(Chunk));
 			b2::Free(oldChunks);
 		}
 
 		Chunk* chunk = m_chunks + m_chunkCount;
 		chunk->blocks = (Block*)Alloc(chunkSize);
 #if defined(_DEBUG)
-		memset(chunk->blocks, 0xcd, chunkSize);
+		std::memset(chunk->blocks, 0xcd, chunkSize);
 #endif
 		int32 blockSize = s_blockSizes[index];
 		chunk->blockSize = blockSize;
@@ -196,7 +196,7 @@ void BlockAllocator::Free(void* p, int32 size)
 
 	assert(found);
 
-	memset(p, 0xfd, blockSize);
+	std::memset(p, 0xfd, blockSize);
 #endif
 
 	Block* block = (Block*)p;
@@ -212,9 +212,9 @@ void BlockAllocator::Clear()
 	}
 
 	m_chunkCount = 0;
-	memset(m_chunks, 0, m_chunkSpace * sizeof(Chunk));
+	std::memset(m_chunks, 0, m_chunkSpace * sizeof(Chunk));
 
-	memset(m_freeLists, 0, sizeof(m_freeLists));
+	std::memset(m_freeLists, 0, sizeof(m_freeLists));
 }
 
 } // namespace b2

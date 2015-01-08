@@ -16,7 +16,7 @@ Here, I'll list the main changes and progress:
 * [X] Update the CMake build system
 * [X] Add a true namespace and remove the `b2` prefixes
 * [X] Replace preprocessor constants with C++ constants
-* [ ] Use C++ headers instead of C headers
+* [X] Use C++ headers instead of C headers
 * [ ] Update the "Hello World" example
 * [ ] Update the "Testbed" example
 

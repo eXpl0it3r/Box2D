@@ -19,7 +19,7 @@
 #include <Box2D/Collision/Shapes/ChainShape.hpp>
 #include <Box2D/Collision/Shapes/EdgeShape.hpp>
 #include <new>
-#include <string.h>
+#include <cstring>
 
 namespace b2
 {
@@ -50,7 +50,7 @@ void ChainShape::CreateLoop(const Vec2* vertices, int32 count)
 
 	m_count = count + 1;
 	m_vertices = (Vec2*)Alloc(m_count * sizeof(Vec2));
-	memcpy(m_vertices, vertices, count * sizeof(Vec2));
+	std::memcpy(m_vertices, vertices, count * sizeof(Vec2));
 	m_vertices[count] = m_vertices[0];
 	m_prevVertex = m_vertices[m_count - 2];
 	m_nextVertex = m_vertices[1];
@@ -70,7 +70,7 @@ void ChainShape::CreateChain(const Vec2* vertices, int32 count)
 
 	m_count = count;
 	m_vertices = (Vec2*)Alloc(count * sizeof(Vec2));
-	memcpy(m_vertices, vertices, m_count * sizeof(Vec2));
+	std::memcpy(m_vertices, vertices, m_count * sizeof(Vec2));
 
 	m_hasPrevVertex = false;
 	m_hasNextVertex = false;

@@ -19,9 +19,9 @@
 #ifndef B2_SETTINGS_HPP
 #define B2_SETTINGS_HPP
 
-#include <stddef.h>
-#include <assert.h>
-#include <float.h>
+#include <cstddef>
+#include <cassert>
+#include <cfloat>
 
 #define B2_NOT_USED(x) ((void)(x))
 

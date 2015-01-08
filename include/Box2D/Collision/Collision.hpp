@@ -20,7 +20,7 @@
 #define B2_COLLISION_HPP
 
 #include <Box2D/Common/Math.hpp>
-#include <limits.h>
+#include <climits>
 
 namespace b2
 {

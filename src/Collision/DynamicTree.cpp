@@ -17,7 +17,7 @@
 */
 
 #include <Box2D/Collision/DynamicTree.hpp>
-#include <string.h>
+#include <cstring>
 
 namespace b2
 {
@@ -29,7 +29,7 @@ DynamicTree::DynamicTree()
 	m_nodeCapacity = 16;
 	m_nodeCount = 0;
 	m_nodes = (TreeNode*)Alloc(m_nodeCapacity * sizeof(TreeNode));
-	memset(m_nodes, 0, m_nodeCapacity * sizeof(TreeNode));
+	std::memset(m_nodes, 0, m_nodeCapacity * sizeof(TreeNode));
 
 	// Build a linked list for the free list.
 	for (int32 i = 0; i < m_nodeCapacity - 1; ++i)
@@ -64,7 +64,7 @@ int32 DynamicTree::AllocateNode()
 		TreeNode* oldNodes = m_nodes;
 		m_nodeCapacity *= 2;
 		m_nodes = (TreeNode*)Alloc(m_nodeCapacity * sizeof(TreeNode));
-		memcpy(m_nodes, oldNodes, m_nodeCount * sizeof(TreeNode));
+		std::memcpy(m_nodes, oldNodes, m_nodeCount * sizeof(TreeNode));
 		Free(oldNodes);
 
 		// Build a linked list for the free list. The parent

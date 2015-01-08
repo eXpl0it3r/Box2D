@@ -20,7 +20,7 @@
 #define B2_MATH_HPP
 
 #include <Box2D/Common/Settings.hpp>
-#include <math.h>
+#include <cmath>
 
 namespace b2
 {
@@ -100,7 +100,7 @@ struct Vec2
 	/// Get the length of this vector (the norm).
 	float32 Length() const
 	{
-		return sqrtf(x * x + y * y);
+		return std::sqrt(x * x + y * y);
 	}
 
 	/// Get the length squared. For performance, use this instead of
@@ -304,16 +304,16 @@ struct Rot
 	explicit Rot(float32 angle)
 	{
 		/// TODO_ERIN optimize
-		s = sinf(angle);
-		c = cosf(angle);
+		s = std::sin(angle);
+		c = std::cos(angle);
 	}
 
 	/// Set using an angle in radians.
 	void Set(float32 angle)
 	{
 		/// TODO_ERIN optimize
-		s = sinf(angle);
-		c = cosf(angle);
+		s = std::sin(angle);
+		c = std::cos(angle);
 	}
 
 	/// Set to the identity rotation
@@ -326,7 +326,7 @@ struct Rot
 	/// Get the angle in radians
 	float32 GetAngle() const
 	{
-		return atan2f(s, c);
+		return std::atan2(s, c);
 	}
 
 	/// Get the x-axis

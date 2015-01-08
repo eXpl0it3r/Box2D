@@ -19,7 +19,7 @@
 #ifndef B2_GROWABLE_STACK_HPP
 #define B2_GROWABLE_STACK_HPP
 #include <Box2D/Common/Settings.hpp>
-#include <string.h>
+#include <cstring>
 
 namespace b2
 {
@@ -54,7 +54,7 @@ public:
 			T* old = m_stack;
 			m_capacity *= 2;
 			m_stack = (T*)Alloc(m_capacity * sizeof(T));
-			memcpy(m_stack, old, m_count * sizeof(T));
+			std::memcpy(m_stack, old, m_count * sizeof(T));
 			if (old != m_array)
 			{
 				Free(old);
