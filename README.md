@@ -17,7 +17,7 @@ Here, I'll list the main changes and progress:
 * [X] Add a true namespace and remove the `b2` prefixes
 * [X] Replace preprocessor constants with C++ constants
 * [X] Use C++ headers instead of C headers
-* [ ] Update the "Hello World" example
+* [X] Update the "Hello World" example
 * [ ] Update the "Testbed" example
 
 Hints for the Testbed

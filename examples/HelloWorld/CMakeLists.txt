@@ -1,4 +1,4 @@
 # Hello World examples
-include_directories (${Box2D_SOURCE_DIR})
+include_directories (${PROJECT_SOURCE_DIR}/include)
 add_executable(HelloWorld HelloWorld.cpp)
 target_link_libraries (HelloWorld Box2D)
