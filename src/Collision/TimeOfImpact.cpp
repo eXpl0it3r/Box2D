@@ -25,12 +25,12 @@
 
 #include <cstdio>
 
+b2::float32 b2_toiTime, b2_toiMaxTime;
+b2::int32 b2_toiCalls, b2_toiIters, b2_toiMaxIters;
+b2::int32 b2_toiRootIters, b2_toiMaxRootIters;
+
 namespace b2
 {
-
-float32 toiTime, toiMaxTime;
-int32 toiCalls, toiIters, toiMaxIters;
-int32 toiRootIters, toiMaxRootIters;
 
 //
 struct SeparationFunction
@@ -258,7 +258,7 @@ void TimeOfImpact(TOIOutput* output, const TOIInput* input)
 {
 	Timer timer;
 
-	++toiCalls;
+	++b2_toiCalls;
 
 	output->state = TOIOutput::e_unknown;
 	output->t = input->tMax;
@@ -425,7 +425,7 @@ void TimeOfImpact(TOIOutput* output, const TOIInput* input)
 				}
 
 				++rootIterCount;
-				++toiRootIters;
+				++b2_toiRootIters;
 
 				float32 s = fcn.Evaluate(indexA, indexB, t);
 
@@ -454,7 +454,7 @@ void TimeOfImpact(TOIOutput* output, const TOIInput* input)
 				}
 			}
 
-			toiMaxRootIters = Max(toiMaxRootIters, rootIterCount);
+			b2_toiMaxRootIters = Max(b2_toiMaxRootIters, rootIterCount);
 
 			++pushBackIter;
 
@@ -465,7 +465,7 @@ void TimeOfImpact(TOIOutput* output, const TOIInput* input)
 		}
 
 		++iter;
-		++toiIters;
+		++b2_toiIters;
 
 		if (done)
 		{
@@ -481,11 +481,11 @@ void TimeOfImpact(TOIOutput* output, const TOIInput* input)
 		}
 	}
 
-	toiMaxIters = Max(toiMaxIters, iter);
+	b2_toiMaxIters = Max(b2_toiMaxIters, iter);
 
 	float32 time = timer.GetMilliseconds();
-	toiMaxTime = Max(toiMaxTime, time);
-	toiTime += time;
+	b2_toiMaxTime = Max(b2_toiMaxTime, time);
+	b2_toiTime += time;
 }
 
 } // namespace b2

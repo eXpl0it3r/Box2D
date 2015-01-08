@@ -24,12 +24,12 @@
 #include <Box2D/Dynamics/World.hpp>
 #include <Box2D/Common/StackAllocator.hpp>
 
-namespace b2
-{
-
 #define B2_DEBUG_SOLVER 0
 
 bool g_blockSolve = true;
+
+namespace b2
+{
 
 struct ContactPositionConstraint
 {

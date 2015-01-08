@@ -17,21 +17,26 @@
 */
 
 #include "imgui.h"
-#include "RenderGL3.h"
-#include "DebugDraw.h"
-#include "Test.h"
+#include "RenderGL3.hpp"
+#include "DebugDraw.hpp"
+#include "Test.hpp"
 
 #if defined(__APPLE__)
 #include <OpenGL/gl3.h>
 #else
-#include <glew/glew.h>
+#include <GL/glew.h>
 #endif
 
-#include <glfw/glfw3.h>
-#include <stdio.h>
+#include <GLFW/glfw3.h>
+#include <cstdio>
 
 #ifdef _MSC_VER
 #define snprintf _snprintf
+#endif
+
+#if defined(_WIN32)
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
 #endif
 
 //
@@ -50,14 +55,14 @@ namespace
 	GLFWwindow* mainWindow = NULL;
 	UIState ui;
 
-	int32 testIndex = 0;
-	int32 testSelection = 0;
-	int32 testCount = 0;
+	b2::int32 testIndex = 0;
+	b2::int32 testSelection = 0;
+	b2::int32 testCount = 0;
 	TestEntry* entry;
 	Test* test;
 	Settings settings;
 	bool rightMouseDown;
-	b2Vec2 lastp;
+	b2::Vec2 lastp;
 }
 
 //
@@ -70,11 +75,11 @@ static void sCreateUI()
 	ui.mouseOverMenu = false;
 
 	// Init UI
-    const char* fontPath = "../Data/DroidSans.ttf";
+    const char* fontPath = "Data/DroidSans.ttf";
     
 	if (RenderGLInit(fontPath) == false)
 	{
-		fprintf(stderr, "Could not init GUI renderer.\n");
+		std::fprintf(stderr, "Could not init GUI renderer.\n");
 		assert(false);
 		return;
 	}
@@ -103,7 +108,7 @@ static void sKeyCallback(GLFWwindow*, int key, int scancode, int action, int mod
 			// Pan left
 			if (mods == GLFW_MOD_CONTROL)
 			{
-				b2Vec2 newOrigin(2.0f, 0.0f);
+				b2::Vec2 newOrigin(2.0f, 0.0f);
 				test->ShiftOrigin(newOrigin);
 			}
 			else
@@ -116,7 +121,7 @@ static void sKeyCallback(GLFWwindow*, int key, int scancode, int action, int mod
 			// Pan right
 			if (mods == GLFW_MOD_CONTROL)
 			{
-				b2Vec2 newOrigin(-2.0f, 0.0f);
+				b2::Vec2 newOrigin(-2.0f, 0.0f);
 				test->ShiftOrigin(newOrigin);
 			}
 			else
@@ -129,7 +134,7 @@ static void sKeyCallback(GLFWwindow*, int key, int scancode, int action, int mod
 			// Pan down
 			if (mods == GLFW_MOD_CONTROL)
 			{
-				b2Vec2 newOrigin(0.0f, 2.0f);
+				b2::Vec2 newOrigin(0.0f, 2.0f);
 				test->ShiftOrigin(newOrigin);
 			}
 			else
@@ -142,7 +147,7 @@ static void sKeyCallback(GLFWwindow*, int key, int scancode, int action, int mod
 			// Pan up
 			if (mods == GLFW_MOD_CONTROL)
 			{
-				b2Vec2 newOrigin(0.0f, -2.0f);
+				b2::Vec2 newOrigin(0.0f, -2.0f);
 				test->ShiftOrigin(newOrigin);
 			}
 			else
@@ -159,12 +164,12 @@ static void sKeyCallback(GLFWwindow*, int key, int scancode, int action, int mod
 
 		case GLFW_KEY_Z:
 			// Zoom out
-			g_camera.m_zoom = b2Min(1.1f * g_camera.m_zoom, 20.0f);
+			g_camera.m_zoom = b2::Min(1.1f * g_camera.m_zoom, 20.0f);
 			break;
 
 		case GLFW_KEY_X:
 			// Zoom in
-			g_camera.m_zoom = b2Max(0.9f * g_camera.m_zoom, 0.02f);
+			g_camera.m_zoom = b2::Max(0.9f * g_camera.m_zoom, 0.02f);
 			break;
 
 		case GLFW_KEY_R:
@@ -222,18 +227,18 @@ static void sKeyCallback(GLFWwindow*, int key, int scancode, int action, int mod
 }
 
 //
-static void sMouseButton(GLFWwindow*, int32 button, int32 action, int32 mods)
+static void sMouseButton(GLFWwindow*, b2::int32 button, b2::int32 action, b2::int32 mods)
 {
 	double xd, yd;
 	glfwGetCursorPos(mainWindow, &xd, &yd);
-	b2Vec2 ps((float32)xd, (float32)yd);
+	b2::Vec2 ps((b2::float32)xd, (b2::float32)yd);
 
 	// Use the mouse to move things around.
 	if (button == GLFW_MOUSE_BUTTON_1)
 	{
         //<##>
         //ps.Set(0, 0);
-		b2Vec2 pw = g_camera.ConvertScreenToWorld(ps);
+		b2::Vec2 pw = g_camera.ConvertScreenToWorld(ps);
 		if (action == GLFW_PRESS)
 		{
 			if (mods == GLFW_MOD_SHIFT)
@@ -269,14 +274,14 @@ static void sMouseButton(GLFWwindow*, int32 button, int32 action, int32 mods)
 //
 static void sMouseMotion(GLFWwindow*, double xd, double yd)
 {
-	b2Vec2 ps((float)xd, (float)yd);
+	b2::Vec2 ps((float)xd, (float)yd);
 
-	b2Vec2 pw = g_camera.ConvertScreenToWorld(ps);
+	b2::Vec2 pw = g_camera.ConvertScreenToWorld(ps);
 	test->MouseMove(pw);
 	
 	if (rightMouseDown)
 	{
-		b2Vec2 diff = pw - lastp;
+		b2::Vec2 diff = pw - lastp;
 		g_camera.m_center.x -= diff.x;
 		g_camera.m_center.y -= diff.y;
 		lastp = g_camera.ConvertScreenToWorld(ps);
@@ -440,12 +445,12 @@ int main(int argc, char** argv)
     
 	if (glfwInit() == 0)
 	{
-		fprintf(stderr, "Failed to initialize GLFW\n");
+		std::fprintf(stderr, "Failed to initialize GLFW\n");
 		return -1;
 	}
 
 	char title[64];
-	sprintf(title, "Box2D Testbed Version %d.%d.%d", b2_version.major, b2_version.minor, b2_version.revision);
+	std::sprintf(title, "Box2D Testbed Version %d.%d.%d", b2::version.major, b2::version.minor, b2::version.revision);
 
 #if defined(__APPLE__)
 	// Not sure why, but these settings cause glewInit below to crash.
@@ -458,13 +463,13 @@ int main(int argc, char** argv)
     mainWindow = glfwCreateWindow(g_camera.m_width, g_camera.m_height, title, NULL, NULL);
 	if (mainWindow == NULL)
 	{
-		fprintf(stderr, "Failed to open GLFW mainWindow.\n");
+		std::fprintf(stderr, "Failed to open GLFW mainWindow.\n");
 		glfwTerminate();
 		return -1;
 	}
 
 	glfwMakeContextCurrent(mainWindow);
-	printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION), glGetString(GL_SHADING_LANGUAGE_VERSION));
+	std::printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION), glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 	glfwSetScrollCallback(mainWindow, sScrollCallback);
 	glfwSetWindowSizeCallback(mainWindow, sResizeWindow);
@@ -478,7 +483,7 @@ int main(int argc, char** argv)
     GLenum err = glewInit();
 	if (GLEW_OK != err)
 	{
-		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+		std::fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
 		exit(EXIT_FAILURE);
 	}
 #endif
@@ -493,7 +498,7 @@ int main(int argc, char** argv)
 		++testCount;
 	}
 
-	testIndex = b2Clamp(testIndex, 0, testCount - 1);
+	testIndex = b2::Clamp(testIndex, 0, testCount - 1);
 	testSelection = testIndex;
 
 	entry = g_testEntries + testIndex;
@@ -540,7 +545,7 @@ int main(int argc, char** argv)
         time1 = time2;
 
         char buffer[32];
-        snprintf(buffer, 32, "%.1f ms", 1000.0 * frameTime);
+        std::snprintf(buffer, 32, "%.1f ms", 1000.0 * frameTime);
         AddGfxCmdText(5, 5, TEXT_ALIGN_LEFT, buffer, WHITE);
         
 		glEnable(GL_BLEND);

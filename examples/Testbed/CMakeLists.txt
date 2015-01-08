@@ -9,58 +9,63 @@ set(Testbed_Framework_SRCS
 	Framework/imgui.cpp
 	Framework/Main.cpp
 	Framework/RenderGL3.cpp
-	Framework/RenderGL3.h
+	Framework/RenderGL3.hpp
 	Framework/Test.cpp
-	Framework/Test.h
+	Framework/Test.hpp
+	Framework/DebugDraw.cpp
+	Framework/DebugDraw.hpp
+	Framework/imgui.h
+	Framework/imgui.cpp
+	Framework/stb_truetype.h
 )
 
 #define the test files.
 set(Testbed_Tests_SRCS
 	Tests/TestEntries.cpp
-	Tests/AddPair.h
-	Tests/ApplyForce.h
-	Tests/BodyTypes.h
-	Tests/Breakable.h
-	Tests/Bridge.h
-	Tests/BulletTest.h
-	Tests/Cantilever.h
-	Tests/Car.h
-	Tests/Chain.h
-	Tests/CharacterCollision.h
-	Tests/CollisionFiltering.h
-	Tests/CollisionProcessing.h
-	Tests/CompoundShapes.h
-	Tests/Confined.h
-	Tests/ContinuousTest.h
-	Tests/DistanceTest.h
-	Tests/Dominos.h
-	Tests/DumpShell.h
-	Tests/DynamicTreeTest.h
-	Tests/EdgeShapes.h
-	Tests/EdgeTest.h
-	Tests/Gears.h
-	Tests/OneSidedPlatform.h
-	Tests/Pinball.h
-	Tests/PolyCollision.h
-	Tests/PolyShapes.h
-	Tests/Prismatic.h
-	Tests/Pulleys.h
-	Tests/Pyramid.h
-	Tests/RayCast.h
-	Tests/Revolute.h
-	Tests/Rope.h
-	Tests/RopeJoint.h
-	Tests/SensorTest.h
-	Tests/ShapeEditing.h
-	Tests/SliderCrank.h
-	Tests/SphereStack.h
-	Tests/TheoJansen.h
-	Tests/Tiles.h
-	Tests/TimeOfImpact.h
-	Tests/VaryingFriction.h
-	Tests/VaryingRestitution.h
-	Tests/VerticalStack.h
-	Tests/Web.h
+	Tests/AddPair.hpp
+	Tests/ApplyForce.hpp
+	Tests/BodyTypes.hpp
+	Tests/Breakable.hpp
+	Tests/Bridge.hpp
+	Tests/BulletTest.hpp
+	Tests/Cantilever.hpp
+	Tests/Car.hpp
+	Tests/Chain.hpp
+	Tests/CharacterCollision.hpp
+	Tests/CollisionFiltering.hpp
+	Tests/CollisionProcessing.hpp
+	Tests/CompoundShapes.hpp
+	Tests/Confined.hpp
+	Tests/ContinuousTest.hpp
+	Tests/DistanceTest.hpp
+	Tests/Dominos.hpp
+	Tests/DumpShell.hpp
+	Tests/DynamicTreeTest.hpp
+	Tests/EdgeShapes.hpp
+	Tests/EdgeTest.hpp
+	Tests/Gears.hpp
+	Tests/OneSidedPlatform.hpp
+	Tests/Pinball.hpp
+	Tests/PolyCollision.hpp
+	Tests/PolyShapes.hpp
+	Tests/Prismatic.hpp
+	Tests/Pulleys.hpp
+	Tests/Pyramid.hpp
+	Tests/RayCast.hpp
+	Tests/Revolute.hpp
+	Tests/Rope.hpp
+	Tests/RopeJoint.hpp
+	Tests/SensorTest.hpp
+	Tests/ShapeEditing.hpp
+	Tests/SliderCrank.hpp
+	Tests/SphereStack.hpp
+	Tests/TheoJansen.hpp
+	Tests/Tiles.hpp
+	Tests/TimeOfImpact.hpp
+	Tests/VaryingFriction.hpp
+	Tests/VaryingRestitution.hpp
+	Tests/VerticalStack.hpp
+	Tests/Web.hpp
 )
 
 # These are used to create visual studio folders.
@@ -69,7 +74,8 @@ source_group(Tests FILES ${Testbed_Tests_SRCS})
 
 include_directories (
 	${OPENGL_INCLUDE_DIR}
-	${Box2D_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/include
+	../extlibs/include
 )
 
 if(APPLE)
@@ -79,6 +85,20 @@ if(APPLE)
 	set (OPENGL_LIBRARIES GL GLU X11)
 elseif(WIN32)
 	set (ADDITIONAL_LIBRARIES winmm)
+	
+	if(CMAKE_COMPILER_IS_GNUCXX)
+		set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "../extlibs/include/")
+		set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "../extlibs/lib-mingw/")
+		
+		find_path(GLFW_INCLUDE_DIR GLFW/glfw3.h
+			  PATH_SUFFIXES include
+			  PATHS "../extlibs")
+
+		find_library(GLFW_LIBRARY
+					 NAMES glfw3
+					 PATH_SUFFIXES lib64 lib
+					 PATHS "../extlibs/lib-mingw")
+	endif(CMAKE_COMPILER_IS_GNUCXX)
 endif(APPLE)
 
 add_executable(Testbed
@@ -86,11 +106,15 @@ add_executable(Testbed
 	${Testbed_Tests_SRCS}
 )
 
+find_package(GLEW REQUIRED)
+
+include_directories(${GLEW_INCLUDE_DIR} ${GLFW_INCLUDE_DIR})
+
 target_link_libraries (
 	Testbed
 	Box2D
-	glew
-	glfw
+	${GLFW_LIBRARY}
+	${GLEW_LIBRARY}
 	${ADDITIONAL_LIBRARIES}
 	${OPENGL_LIBRARIES}
 ) 

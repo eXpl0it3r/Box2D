@@ -19,17 +19,19 @@
 // Source altered and distributed from https://github.com/AdrienHerubel/imgui
 
 #define _USE_MATH_DEFINES
-#include <math.h>
-#include <stdio.h>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
 #ifdef __APPLE__
 #include <OpenGL/gl3.h>
 #else
-#include <glew/glew.h>
+#include <GL/glew.h>
 #include <GL/gl.h>
 #endif
 
-#include "RenderGL3.h"
+#include "RenderGL3.hpp"
 
 // Some math headers don't have PI defined.
 static const float PI = 3.14159265f;
@@ -106,7 +108,7 @@ static const char* allocText(const char* text)
 	if (g_textPoolSize + len >= TEXT_POOL_SIZE)
 		return 0;
 	char* dst = &g_textPool[g_textPoolSize];
-	memcpy(dst, text, len);
+	std::memcpy(dst, text, len);
 	g_textPoolSize += len;
 	return dst;
 }
@@ -237,8 +239,8 @@ static void sDrawPolygon(const float* coords, unsigned numCoords, float r, unsig
 		g_tempNormals[j * 2 + 1] = -dx;
 	}
 
-	float colf[4] = { (float)(col & 0xff) / 255.f, (float)((col >> 8) & 0xff) / 255.f, (float)((col >> 16) & 0xff) / 255.f, (float)((col >> 24) & 0xff) / 255.f };
-	float colTransf[4] = { (float)(col & 0xff) / 255.f, (float)((col >> 8) & 0xff) / 255.f, (float)((col >> 16) & 0xff) / 255.f, 0 };
+	float colf[4] = { static_cast<float>(col & 0xff) / 255.f, static_cast<float>((col >> 8) & 0xff) / 255.f, static_cast<float>((col >> 16) & 0xff) / 255.f, static_cast<float>((col >> 24) & 0xff) / 255.f };
+	float colTransf[4] = { static_cast<float>(col & 0xff) / 255.f, static_cast<float>((col >> 8) & 0xff) / 255.f, static_cast<float>((col >> 16) & 0xff) / 255.f, 0 };
 
 	for (unsigned i = 0, j = numCoords - 1; i < numCoords; j = i++)
 	{
@@ -265,9 +267,9 @@ static void sDrawPolygon(const float* coords, unsigned numCoords, float r, unsig
 	int cSize = numCoords * 4 * 6 + (numCoords - 2) * 4 * 3;
 	float * v = g_tempVertices;
 	float * uv = g_tempTextureCoords;
-	memset(uv, 0, uvSize * sizeof(float));
+	std::memset(uv, 0, uvSize * sizeof(float));
 	float * c = g_tempColors;
-	memset(c, 1, cSize * sizeof(float));
+	std::memset(c, 1, cSize * sizeof(float));
 
 	float * ptrV = v;
 	float * ptrC = c;
@@ -434,7 +436,7 @@ void sRenderLine(float x0, float y0, float x1, float y1, float r, float fth, uns
 {
 	float dx = x1 - x0;
 	float dy = y1 - y0;
-	float d = sqrtf(dx*dx + dy*dy);
+	float d = std::sqrt(dx*dx + dy*dy);
 	if (d > 0.0001f)
 	{
 		d = 1.0f / d;
@@ -472,33 +474,33 @@ bool RenderGLInit(const char* fontpath)
 {
 	for (int i = 0; i < CIRCLE_VERTS; ++i)
 	{
-		float a = (float)i / (float)CIRCLE_VERTS * PI * 2;
-		g_circleVerts[i * 2 + 0] = cosf(a);
-		g_circleVerts[i * 2 + 1] = sinf(a);
+		float a = static_cast<float>(i) / static_cast<float>(CIRCLE_VERTS) * PI * 2;
+		g_circleVerts[i * 2 + 0] = std::cos(a);
+		g_circleVerts[i * 2 + 1] = std::sin(a);
 	}
 
 	// Load font.
-	FILE* fp = fopen(fontpath, "rb");
+	FILE* fp = std::fopen(fontpath, "rb");
 	if (!fp) return false;
-	fseek(fp, 0, SEEK_END);
-	int size = (int)ftell(fp);
-	fseek(fp, 0, SEEK_SET);
+	std::fseek(fp, 0, SEEK_END);
+	int size = static_cast<int>(std::ftell(fp));
+	std::fseek(fp, 0, SEEK_SET);
 
-	unsigned char* ttfBuffer = (unsigned char*)malloc(size);
+	unsigned char* ttfBuffer = (unsigned char*)std::malloc(size);
 	if (!ttfBuffer)
 	{
-		fclose(fp);
+		std::fclose(fp);
 		return false;
 	}
 
-	fread(ttfBuffer, 1, size, fp);
-	fclose(fp);
+	std::fread(ttfBuffer, 1, size, fp);
+	std::fclose(fp);
 	fp = 0;
 
-	unsigned char* bmap = (unsigned char*)malloc(512 * 512);
+	unsigned char* bmap = (unsigned char*)std::malloc(512 * 512);
 	if (!bmap)
 	{
-		free(ttfBuffer);
+		std::free(ttfBuffer);
 		return false;
 	}
 
@@ -588,8 +590,8 @@ bool RenderGLInit(const char* fontpath)
 
 	glUseProgram(0);
 
-	free(ttfBuffer);
-	free(bmap);
+	std::free(ttfBuffer);
+	std::free(bmap);
 
 	return true;
 }
@@ -625,15 +627,15 @@ static void sGetBakedQuad(stbtt_bakedchar *chardata, int pw, int ph, int char_in
 	int round_x = STBTT_ifloor(*xpos + b->xoff);
 	int round_y = STBTT_ifloor(*ypos - b->yoff);
 
-	q->x0 = (float)round_x;
-	q->y0 = (float)round_y;
-	q->x1 = (float)round_x + b->x1 - b->x0;
-	q->y1 = (float)round_y - b->y1 + b->y0;
+	q->x0 = static_cast<float>(round_x);
+	q->y0 = static_cast<float>(round_y);
+	q->x1 = static_cast<float>(round_x) + b->x1 - b->x0;
+	q->y1 = static_cast<float>(round_y) - b->y1 + b->y0;
 
-	q->s0 = b->x0 / (float)pw;
-	q->t0 = b->y0 / (float)pw;
-	q->s1 = b->x1 / (float)ph;
-	q->t1 = b->y1 / (float)ph;
+	q->s0 = b->x0 / static_cast<float>(pw);
+	q->t0 = b->y0 / static_cast<float>(pw);
+	q->s1 = b->x1 / static_cast<float>(ph);
+	q->t1 = b->y1 / static_cast<float>(ph);
 
 	*xpos += b->xadvance;
 }
@@ -681,10 +683,10 @@ void sRenderString(float x, float y, const char *text, TextAlign align, unsigned
 	else if (align == TEXT_ALIGN_RIGHT)
 		x -= sGetTextLength(g_cdata, text);
 
-	float r = (float)(col & 0xff) / 255.f;
-	float g = (float)((col >> 8) & 0xff) / 255.f;
-	float b = (float)((col >> 16) & 0xff) / 255.f;
-	float a = (float)((col >> 24) & 0xff) / 255.f;
+	float r = static_cast<float>(col & 0xff) / 255.f;
+	float g = static_cast<float>((col >> 8) & 0xff) / 255.f;
+	float b = static_cast<float>((col >> 16) & 0xff) / 255.f;
+	float a = static_cast<float>((col >> 24) & 0xff) / 255.f;
 
 	// assume orthographic projection with units = screen pixels, origin at top left
 	glBindTexture(GL_TEXTURE_2D, g_ftex);
@@ -758,7 +760,7 @@ void RenderGLFlush(int width, int height)
 
 	glViewport(0, 0, width, height);
 	glUseProgram(g_program);
-	glUniform2f(g_programViewportLocation, (float)width, (float)height);
+	glUniform2f(g_programViewportLocation, static_cast<float>(width), static_cast<float>(height));
 	glUniform1i(g_programTextureLocation, 0);
 
 	glDisable(GL_SCISSOR_TEST);
@@ -769,15 +771,15 @@ void RenderGLFlush(int width, int height)
 		{
 			if (cmd.rect.r == 0)
 			{
-				sDrawRect((float)cmd.rect.x*s + 0.5f, (float)cmd.rect.y*s + 0.5f,
-						 (float)cmd.rect.w*s - 1, (float)cmd.rect.h*s - 1,
+				sDrawRect(static_cast<float>(cmd.rect.x)*s + 0.5f, static_cast<float>(cmd.rect.y)*s + 0.5f,
+						 static_cast<float>(cmd.rect.w)*s - 1, static_cast<float>(cmd.rect.h)*s - 1,
 						 1.0f, cmd.col);
 			}
 			else
 			{
-				sDrawRoundedRect((float)cmd.rect.x*s + 0.5f, (float)cmd.rect.y*s + 0.5f,
-								(float)cmd.rect.w*s - 1, (float)cmd.rect.h*s - 1,
-								(float)cmd.rect.r*s, 1.0f, cmd.col);
+				sDrawRoundedRect(static_cast<float>(cmd.rect.x)*s + 0.5f, static_cast<float>(cmd.rect.y)*s + 0.5f,
+								static_cast<float>(cmd.rect.w)*s - 1, static_cast<float>(cmd.rect.h)*s - 1,
+								static_cast<float>(cmd.rect.r)*s, 1.0f, cmd.col);
 			}
 		}
 		else if (cmd.type == GFXCMD_LINE)
@@ -790,9 +792,9 @@ void RenderGLFlush(int width, int height)
 			{
 				const float verts[3 * 2] =
 				{
-					(float)cmd.rect.x*s + 0.5f, (float)cmd.rect.y*s + 0.5f,
-					(float)cmd.rect.x*s + 0.5f + (float)cmd.rect.w*s - 1, (float)cmd.rect.y*s + 0.5f + (float)cmd.rect.h*s / 2 - 0.5f,
-					(float)cmd.rect.x*s + 0.5f, (float)cmd.rect.y*s + 0.5f + (float)cmd.rect.h*s - 1,
+					static_cast<float>(cmd.rect.x)*s + 0.5f, static_cast<float>(cmd.rect.y)*s + 0.5f,
+					static_cast<float>(cmd.rect.x)*s + 0.5f + static_cast<float>(cmd.rect.w)*s - 1, static_cast<float>(cmd.rect.y)*s + 0.5f + static_cast<float>(cmd.rect.h)*s / 2 - 0.5f,
+					static_cast<float>(cmd.rect.x)*s + 0.5f, static_cast<float>(cmd.rect.y)*s + 0.5f + static_cast<float>(cmd.rect.h)*s - 1,
 				};
 				sDrawPolygon(verts, 3, 1.0f, cmd.col);
 			}
@@ -800,9 +802,9 @@ void RenderGLFlush(int width, int height)
 			{
 				const float verts[3 * 2] =
 				{
-					(float)cmd.rect.x*s + 0.5f, (float)cmd.rect.y*s + 0.5f + (float)cmd.rect.h*s - 1,
-					(float)cmd.rect.x*s + 0.5f + (float)cmd.rect.w*s / 2 - 0.5f, (float)cmd.rect.y*s + 0.5f,
-					(float)cmd.rect.x*s + 0.5f + (float)cmd.rect.w*s - 1, (float)cmd.rect.y*s + 0.5f + (float)cmd.rect.h*s - 1,
+					static_cast<float>(cmd.rect.x)*s + 0.5f, static_cast<float>(cmd.rect.y)*s + 0.5f + static_cast<float>(cmd.rect.h)*s - 1,
+					static_cast<float>(cmd.rect.x)*s + 0.5f + static_cast<float>(cmd.rect.w)*s / 2 - 0.5f, static_cast<float>(cmd.rect.y)*s + 0.5f,
+					static_cast<float>(cmd.rect.x)*s + 0.5f + static_cast<float>(cmd.rect.w)*s - 1, static_cast<float>(cmd.rect.y)*s + 0.5f + static_cast<float>(cmd.rect.h)*s - 1,
 				};
 				sDrawPolygon(verts, 3, 1.0f, cmd.col);
 			}

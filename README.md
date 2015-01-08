@@ -18,7 +18,7 @@ Here, I'll list the main changes and progress:
 * [X] Replace preprocessor constants with C++ constants
 * [X] Use C++ headers instead of C headers
 * [X] Update the "Hello World" example
-* [ ] Update the "Testbed" example
+* [X] Update the "Testbed" example
 
 Hints for the Testbed
 ---------------------
