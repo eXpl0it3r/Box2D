@@ -22,6 +22,7 @@ Here, I'll list the changes and the progress:
 * [X] Update the "Hello World" example
 * [X] Update the "Testbed" example
 * [X] Rebase onto the new [Git repository](https://github.com/erincatto/box2d)
+* [ ] Adjust the build system to properly work with Visual Studios
 * [ ] Add Doxygen documentation generation to CMake
 
 Hints for the Testbed

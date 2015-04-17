@@ -1,12 +1,8 @@
-# Some flags for Freeglut and GLUI.
-add_definitions( -DGLEW_STATIC -D_CRT_SECURE_NO_WARNINGS )
+# Some flags for GLEW
+add_definitions(-DGLEW_STATIC)
 
 # Define the framework files.
 set(Testbed_Framework_SRCS
-	Framework/DebugDraw.cpp
-	Framework/DebugDraw.h
-	Framework/imgui.h
-	Framework/imgui.cpp
 	Framework/Main.cpp
 	Framework/RenderGL3.cpp
 	Framework/RenderGL3.hpp
@@ -72,7 +68,7 @@ set(Testbed_Tests_SRCS
 source_group(Framework FILES ${Testbed_Framework_SRCS})
 source_group(Tests FILES ${Testbed_Tests_SRCS})
 
-include_directories (
+include_directories(
 	${OPENGL_INCLUDE_DIR}
 	${PROJECT_SOURCE_DIR}/include
 	../extlibs/include
@@ -80,26 +76,28 @@ include_directories (
 
 if(APPLE)
 	# We are not using the Apple's framework version, but X11's
-	include_directories( /usr/X11/include )
-	link_directories( /usr/X11/lib )
-	set (OPENGL_LIBRARIES GL GLU X11)
+	include_directories(/usr/X11/include)
+	link_directories(/usr/X11/lib)
+	set(OPENGL_LIBRARIES GL GLU X11)
 elseif(WIN32)
-	set (ADDITIONAL_LIBRARIES winmm)
+	set(ADDITIONAL_LIBRARIES winmm)
 	
 	if(CMAKE_COMPILER_IS_GNUCXX)
 		set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "../extlibs/include/")
 		set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "../extlibs/lib-mingw/")
 		
 		find_path(GLFW_INCLUDE_DIR GLFW/glfw3.h
-			  PATH_SUFFIXES include
-			  PATHS "../extlibs")
+			PATH_SUFFIXES include
+			PATHS "../extlibs"
+		)
 
 		find_library(GLFW_LIBRARY
-					 NAMES glfw3
-					 PATH_SUFFIXES lib64 lib
-					 PATHS "../extlibs/lib-mingw")
+			NAMES glfw3
+			PATH_SUFFIXES lib64 lib
+			PATHS "../extlibs/lib-mingw"
+		)
 	endif(CMAKE_COMPILER_IS_GNUCXX)
-endif(APPLE)
+endif()
 
 add_executable(Testbed
 	${Testbed_Framework_SRCS}
@@ -110,14 +108,17 @@ find_package(GLEW REQUIRED)
 
 include_directories(${GLEW_INCLUDE_DIR} ${GLFW_INCLUDE_DIR})
 
-target_link_libraries (
+target_link_libraries(
 	Testbed
-	Box2D
+	box2d
 	${GLFW_LIBRARY}
 	${GLEW_LIBRARY}
 	${ADDITIONAL_LIBRARIES}
 	${OPENGL_LIBRARIES}
 ) 
 
-file(COPY ../Build/Data DESTINATION ..)
-
+if(BOX2D_INSTALL_EXAMPLES)
+	install(TARGETS Testbed
+		RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/examples
+	)
+endif()
