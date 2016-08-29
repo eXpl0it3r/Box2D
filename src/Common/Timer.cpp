@@ -67,9 +67,14 @@ float32 Timer::GetMilliseconds() const
 	return ms;
 }
 
+} // namespace b2
+
 #elif defined(__linux__) || defined (__APPLE__)
 
 #include <sys/time.h>
+
+namespace b2
+{
 
 Timer::Timer()
 {
@@ -91,8 +96,13 @@ float32 Timer::GetMilliseconds() const
     return 1000.0f * (t.tv_sec - m_start_sec) + 0.001f * (t.tv_usec - m_start_usec);
 }
 
+} // namespace b2
+
 #else
 
+namespace b2
+{
+	
 Timer::Timer()
 {
 }
@@ -106,6 +116,6 @@ float32 Timer::GetMilliseconds() const
 	return 0.0f;
 }
 
-#endif
-
 } // namespace b2
+
+#endif
